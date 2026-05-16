@@ -25,3 +25,4 @@ keys.txt
 **/api-keys*
 *.pem
 *.key
+.playwright-mcp/
