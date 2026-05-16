@@ -1,0 +1,49 @@
+{
+  "_comment": "30-second B-roll voice-over for live-demo insurance. Plays 1:45-2:25 of stage flow while founder (live) narrates over the top — these TTS lines are the SAFETY voiceover if the founder's mic cuts.",
+  "voices": {
+    "founder": { "id": "nPczCjzI2devNBz1zQrb", "name": "Brian" },
+    "maestro": { "id": "JBFqnCBsd6RMkjVDRZzb", "name": "George" }
+  },
+  "lines": [
+    {
+      "id": "broll_recovery_setup",
+      "voice": "founder",
+      "stability": 0.55,
+      "similarity": 0.85,
+      "style": 0.5,
+      "text": "Same morning. Real life. Madera's reservation API just went dark."
+    },
+    {
+      "id": "broll_recovery_voice",
+      "voice": "maestro",
+      "stability": 0.7,
+      "similarity": 0.85,
+      "style": 0.55,
+      "text": "Madera is offline. Switching to Mayfield."
+    },
+    {
+      "id": "broll_recovery_narration",
+      "voice": "founder",
+      "stability": 0.55,
+      "similarity": 0.85,
+      "style": 0.35,
+      "text": "No human re-prompted. Claude classified the outage and re-planned from partial state."
+    },
+    {
+      "id": "broll_proactive_setup",
+      "voice": "founder",
+      "stability": 0.55,
+      "similarity": 0.85,
+      "style": 0.4,
+      "text": "And before anyone calls — the property management clock advances. Maestro acts unprompted."
+    },
+    {
+      "id": "broll_proactive_voice",
+      "voice": "maestro",
+      "stability": 0.65,
+      "similarity": 0.85,
+      "style": 0.3,
+      "text": "The Karps are thirty minutes out. Suite twelve is dispatched. Maya's horse card is placed."
+    }
+  ]
+}
