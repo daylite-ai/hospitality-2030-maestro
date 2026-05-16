@@ -1,14 +1,18 @@
 /**
  * Maestro Operator — staff-facing mobile surface at /operator.
  *
- * Design rules (per May-2026 hospitality-ops UX research):
+ * Design rules (per May-2026 luxury hospitality-ops UX research, with
+ * Alice by Actabl + Optii as the reference set):
  *   - One Big Card at a time. No scrolling backlog.
- *   - Brutalist dark mode (OLED-friendly in dim back-of-house hallways).
- *   - Massive serif room number readable from 8 feet across a cart.
- *   - Forbes-grade PII stripping — staff sees the preference constraint,
- *     not the guest's name.
- *   - One interaction: swipe to complete. No tiny checkboxes, no menus.
- *   - HK / F&B toggle at top (zero-auth "demo god mode").
+ *   - Alabaster (NOT dark) — Forbes-tier luxury reads tactile + high-
+ *     contrast in 2026, not OLED-bro.
+ *   - Massive serif room number readable across a cart.
+ *   - Forbes-grade PII stripping — staff sees the preference, not the
+ *     guest's name.
+ *   - One interaction: long-press to acknowledge (300ms hold).
+ *   - HK / F&B segmented toggle at top (zero-auth "demo god mode").
+ *   - Property tag "Rosewood Sand Hill · Housekeeping" in footer
+ *     small-caps to telegraph "real product" not "developer demo".
  */
 
 import { useMemo, useState } from "react";
@@ -16,7 +20,7 @@ import { motion } from "motion/react";
 import { useTraceStream } from "@/hooks/useTraceStream";
 import { deriveOperatorTasks, type Department } from "./operator/derive";
 import { NowUpCard } from "./operator/NowUpCard";
-import { SwipeToComplete } from "./operator/SwipeToComplete";
+import { LongPressAck } from "./operator/LongPressAck";
 
 const ORCH = "http://localhost:4000";
 
@@ -42,20 +46,20 @@ export default function OperatorApp() {
   const nowUp = queue[0] ?? null;
 
   return (
-    <div className="mx-auto flex h-[100dvh] max-w-md flex-col overflow-hidden bg-zinc-950 text-zinc-100">
+    <div className="mx-auto flex h-[100dvh] max-w-md flex-col overflow-hidden bg-[#EFE9DD] text-[#1A1A1A]">
       <header className="flex items-center justify-between px-5 pt-6">
         <div>
-          <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-zinc-500">
+          <p className="font-mono text-[10px] uppercase tracking-[0.34em] text-[#1A1A1A]/45">
             Maestro · Operator
           </p>
-          <p className="font-display text-lg italic text-zinc-300">
+          <p className="font-display text-lg italic leading-tight text-[#1A1A1A]/75">
             {DEPT_LABEL[dept]}
           </p>
         </div>
-        <span className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-zinc-500">
+        <span className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-[#1A1A1A]/45">
           <span
             className={
-              "size-1.5 rounded-full " + (connected ? "bg-emerald-400" : "bg-zinc-600")
+              "size-1.5 rounded-full " + (connected ? "bg-[#2C3E2C]" : "bg-[#1A1A1A]/30")
             }
           />
           {connected ? "live" : "offline"}
@@ -68,21 +72,29 @@ export default function OperatorApp() {
         <NowUpCard task={nowUp} />
 
         {queue.length > 1 && (
-          <p className="mt-4 text-center font-mono text-[10px] uppercase tracking-[0.32em] text-zinc-600">
+          <p className="mt-4 text-center font-mono text-[10px] uppercase tracking-[0.32em] text-[#1A1A1A]/35">
             +{queue.length - 1} queued
           </p>
         )}
       </div>
 
-      <div className="px-5 pb-7">
-        {nowUp && (
-          <SwipeToComplete
+      <div className="px-5">
+        {nowUp ? (
+          <LongPressAck
             onComplete={() => {
               void postAck(nowUp.callId, dept);
             }}
           />
+        ) : (
+          <div className="h-20" />
         )}
       </div>
+
+      <footer className="px-5 pb-6 pt-4">
+        <p className="text-center font-mono text-[9.5px] uppercase tracking-[0.36em] text-[#1A1A1A]/40">
+          Rosewood Sand Hill · {DEPT_LABEL[dept]}
+        </p>
+      </footer>
     </div>
   );
 }
@@ -96,7 +108,7 @@ function DeptToggle({
 }) {
   const options: Department[] = ["housekeeping", "fnb"];
   return (
-    <div className="mx-5 mt-5 grid grid-cols-2 rounded-2xl border border-zinc-800 bg-zinc-900/60 p-1">
+    <div className="mx-5 mt-5 grid grid-cols-2 rounded-2xl border border-[#1A1A1A]/12 bg-[#F5F1EA] p-1">
       {options.map((opt) => {
         const active = opt === value;
         return (
@@ -104,16 +116,16 @@ function DeptToggle({
             key={opt}
             type="button"
             onClick={() => onChange(opt)}
-            className="relative z-10 px-3 py-2 font-mono text-[11px] uppercase tracking-[0.32em] text-zinc-400"
+            className="relative z-10 px-3 py-2 font-mono text-[11px] uppercase tracking-[0.32em]"
           >
             {active && (
               <motion.span
                 layoutId="dept-toggle-pill"
-                className="absolute inset-0 -z-10 rounded-xl bg-white/95"
+                className="absolute inset-0 -z-10 rounded-xl bg-[#1A1A1A]"
                 transition={{ type: "spring", stiffness: 360, damping: 28 }}
               />
             )}
-            <span className={active ? "text-zinc-900" : ""}>
+            <span className={active ? "text-[#F5F1EA]" : "text-[#1A1A1A]/45"}>
               {opt === "housekeeping" ? "HK" : "F&B"}
             </span>
           </button>
