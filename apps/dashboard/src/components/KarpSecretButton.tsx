@@ -4,7 +4,7 @@ interface Props {
 }
 
 /**
- * Two invisible 12×12 hatches, top-right corner.
+ * Invisible 12×12 hatches, top-right corner.
  *
  *   - Outer (top-right corner, 0,0):        replays the canned Karp scenario.
  *   - Inner (just left of it, 16px in):    replays the "recovery" scenario —
@@ -12,7 +12,9 @@ interface Props {
  *     to Mayfield Bakery. The Sequoia/Greycroft "Systems of Action" demo.
  *
  * Judges never see these. They're entirely for the operator standing on stage
- * with three precise pixel targets memorised.
+ * with three precise pixel targets memorised. tabIndex/aria-hidden keep them
+ * out of the keyboard focus order so a curious judge can't tab into the demo
+ * controls by accident.
  */
 export function KarpSecretButton({ onKarp, onRecovery }: Props) {
   return (
@@ -20,15 +22,17 @@ export function KarpSecretButton({ onKarp, onRecovery }: Props) {
       <button
         type="button"
         onClick={onKarp}
-        aria-label="replay canned demo (hidden)"
-        title="Replay Karp scenario"
+        tabIndex={-1}
+        aria-hidden
+        title="(hidden) replay Karp scenario"
         className="fixed right-0 top-0 z-50 size-3 cursor-default opacity-0"
       />
       <button
         type="button"
         onClick={onRecovery}
-        aria-label="replay recovery demo (hidden)"
-        title="Replay recovery scenario (Madera 503 → Mayfield)"
+        tabIndex={-1}
+        aria-hidden
+        title="(hidden) replay recovery scenario (Madera 503 → Mayfield)"
         className="fixed right-4 top-0 z-50 size-3 cursor-default opacity-0"
       />
     </>
