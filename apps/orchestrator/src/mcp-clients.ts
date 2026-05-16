@@ -130,6 +130,25 @@ export class McpClientPool {
     return { ok: !result.isError, text };
   }
 
+  /**
+   * Reset every MCP server back to its seeded baseline by killing and
+   * re-spawning every child. This is brute force but bulletproof — the
+   * children are pure functions of disk + seed data, so a fresh process
+   * is guaranteed identical to the initial demo state.
+   *
+   * Chose this over an "admin_reset" MCP tool to avoid coupling demo
+   * mechanics into the model-facing tool surface and to sidestep any
+   * tsx-cache subtleties in long-lived child processes.
+   */
+  async resetAll(): Promise<void> {
+    process.stderr.write("[orchestrator] resetAll: respawning MCP children\n");
+    await this.shutdown();
+    this.shutdownStarted = false; // allow re-connect
+    this.connected = [];
+    this.routing = new Map();
+    await this.connect();
+  }
+
   async shutdown(): Promise<void> {
     if (this.shutdownStarted) return;
     this.shutdownStarted = true;

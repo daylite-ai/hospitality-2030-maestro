@@ -55,13 +55,25 @@ export async function handleElevenLabsCustomLlm(
   const responseId = `maestro-${turnId}`;
 
   return streamSSE(c, async (stream) => {
-    // Heartbeat to keep TTFB under 400ms while Claude is reasoning.
-    const heartbeat = setInterval(() => {
-      stream.writeSSE({ data: "" }).catch(() => undefined);
-    }, 250);
+    // NO synthetic heartbeat. May-2026 ElevenLabs Custom-LLM bug: too many
+    // empty SSE chunks trick their TTS engine into premature buffer flush
+    // and Claude gets cut off mid-sentence. We just rely on Claude's
+    // natural token stream — the Karp turn finishes well within their
+    // generation timeout.
+    const writeChunk = async (content: string) => {
+      await stream.writeSSE({
+        data: JSON.stringify({
+          id: responseId,
+          object: "chat.completion.chunk",
+          created: createdAt,
+          model: "maestro-claude-opus-4-7",
+          choices: [{ index: 0, delta: { content }, finish_reason: null }],
+        }),
+      });
+    };
 
     try {
-      // Stream a single role chunk immediately so ElevenLabs can begin TTS framing.
+      // Single role chunk so ElevenLabs can frame the response.
       await stream.writeSSE({
         data: JSON.stringify({
           id: responseId,
@@ -79,14 +91,18 @@ export async function handleElevenLabsCustomLlm(
         onTrace: broadcast,
       });
 
-      // Final text — one chunk with content, then [DONE]
+      // The GM persona prompt guarantees a single ~15-word confirmation,
+      // so we don't need server-side sentence-boundary buffering here —
+      // there's effectively one sentence. Send it as one chunk.
+      await writeChunk(spokenResponse);
+
       await stream.writeSSE({
         data: JSON.stringify({
           id: responseId,
           object: "chat.completion.chunk",
           created: createdAt,
           model: "maestro-claude-opus-4-7",
-          choices: [{ index: 0, delta: { content: spokenResponse }, finish_reason: "stop" }],
+          choices: [{ index: 0, delta: {}, finish_reason: "stop" }],
         }),
       });
 
@@ -94,24 +110,8 @@ export async function handleElevenLabsCustomLlm(
     } catch (err) {
       const message = (err as Error).message;
       broadcast({ type: "turn_error", turnId, message, ts: new Date().toISOString() });
-      await stream.writeSSE({
-        data: JSON.stringify({
-          id: responseId,
-          object: "chat.completion.chunk",
-          created: createdAt,
-          model: "maestro-claude-opus-4-7",
-          choices: [
-            {
-              index: 0,
-              delta: { content: "I hit an internal issue and could not complete that request." },
-              finish_reason: "stop",
-            },
-          ],
-        }),
-      });
+      await writeChunk("I hit an internal issue and could not complete that request.");
       await stream.writeSSE({ data: "[DONE]" });
-    } finally {
-      clearInterval(heartbeat);
     }
   });
 }

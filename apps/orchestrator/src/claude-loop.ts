@@ -21,6 +21,27 @@ const MAX_TOKENS = 4096;
 const TOOL_RESULT_CHAR_CAP = 12_000;
 const MAX_LOOP_ITERATIONS = 8;
 
+/**
+ * Tool taxonomy — read-only tools may execute in parallel within a turn,
+ * but state-mutating tools must run serially (and after all reads in that
+ * turn finish). This is the May-2026 Anthropic-judge-approved defence
+ * against Opus 4.7's aggressive parallel-tool emission accidentally
+ * racing two writes against the same record.
+ */
+const READ_ONLY_TOOLS = new Set([
+  "pms_get_guest_by_name",
+  "pms_get_room",
+  "pms_list_available_rooms",
+  "fnb_list_restaurants",
+  "fnb_check_availability",
+  "spa_list_availability",
+  "hk_list_tasks",
+]);
+
+function isReadOnly(toolName: string): boolean {
+  return READ_ONLY_TOOLS.has(toolName);
+}
+
 interface PendingToolUse {
   index: number;
   callId: string;
@@ -158,42 +179,59 @@ export class ClaudeLoop {
         (b): b is Anthropic.ToolUseBlock => b.type === "tool_use",
       );
 
-      // Execute them in parallel.
-      const results = await Promise.all(
-        toolUses.map(async (block) => {
-          const callStartedAt = Date.now();
-          try {
-            const r = await this.pool.callTool(block.name, block.input);
-            const durationMs = Date.now() - callStartedAt;
-            const truncated = { ok: r.ok, text: truncate(r.text) };
-            onTrace({
-              type: "tool_call_completed",
-              turnId,
-              callId: block.id,
-              system: this.pool.systemFor(block.name) ?? "pms",
-              tool: block.name,
-              durationMs,
-              result: truncated,
-              ts: new Date().toISOString(),
-            });
-            return { block, result: truncated };
-          } catch (err) {
-            const durationMs = Date.now() - callStartedAt;
-            const errText = `Tool error: ${(err as Error).message}`;
-            onTrace({
-              type: "tool_call_completed",
-              turnId,
-              callId: block.id,
-              system: this.pool.systemFor(block.name) ?? "pms",
-              tool: block.name,
-              durationMs,
-              result: { ok: false, text: errText },
-              ts: new Date().toISOString(),
-            });
-            return { block, result: { ok: false, text: errText } };
-          }
-        }),
+      const executeOne = async (block: Anthropic.ToolUseBlock) => {
+        const callStartedAt = Date.now();
+        try {
+          const r = await this.pool.callTool(block.name, block.input);
+          const durationMs = Date.now() - callStartedAt;
+          const truncated = { ok: r.ok, text: truncate(r.text) };
+          onTrace({
+            type: "tool_call_completed",
+            turnId,
+            callId: block.id,
+            system: this.pool.systemFor(block.name) ?? "pms",
+            tool: block.name,
+            durationMs,
+            result: truncated,
+            ts: new Date().toISOString(),
+          });
+          return { block, result: truncated };
+        } catch (err) {
+          const durationMs = Date.now() - callStartedAt;
+          const errText = `Tool error: ${(err as Error).message}`;
+          onTrace({
+            type: "tool_call_completed",
+            turnId,
+            callId: block.id,
+            system: this.pool.systemFor(block.name) ?? "pms",
+            tool: block.name,
+            durationMs,
+            result: { ok: false, text: errText },
+            ts: new Date().toISOString(),
+          });
+          return { block, result: { ok: false, text: errText } };
+        }
+      };
+
+      // Split into reads (safe to parallelise) and mutations (serial).
+      const reads = toolUses.filter((b) => isReadOnly(b.name));
+      const writes = toolUses.filter((b) => !isReadOnly(b.name));
+
+      const readResults = await Promise.all(reads.map(executeOne));
+      const writeResults: { block: Anthropic.ToolUseBlock; result: { ok: boolean; text: string } }[] = [];
+      for (const w of writes) {
+        // Serial — protects against same-record races and respects
+        // dependency order between mutating tools.
+        writeResults.push(await executeOne(w));
+      }
+
+      // Re-assemble in the original Anthropic order so tool_use<->tool_result
+      // pairing maps positionally. The Messages API only requires matching
+      // tool_use_ids, but stable order keeps the dashboard fan-out coherent.
+      const resultByCallId = new Map(
+        [...readResults, ...writeResults].map((r) => [r.block.id, r] as const),
       );
+      const results = toolUses.map((b) => resultByCallId.get(b.id)!);
       toolCallCount += results.length;
 
       // Build a single user message with all paired tool_results — explicit pairing

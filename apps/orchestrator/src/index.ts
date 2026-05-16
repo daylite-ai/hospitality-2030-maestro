@@ -21,7 +21,7 @@ const pool = new McpClientPool();
 await pool.connect();
 
 const loop = new ClaudeLoop(API_KEY ?? "missing", pool);
-const server = startServer({ loop, port: PORT });
+const server = startServer({ loop, pool, port: PORT });
 
 let shuttingDown = false;
 async function gracefulShutdown(reason: string): Promise<void> {
