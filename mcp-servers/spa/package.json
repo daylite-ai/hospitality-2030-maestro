@@ -1,0 +1,13 @@
+{
+  "name": "@maestro/mcp-spa",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "dependencies": {
+    "@maestro/mcp-helpers": "workspace:*",
+    "@maestro/mock-data": "workspace:*",
+    "@modelcontextprotocol/sdk": "^1.20.0",
+    "zod": "^3.25.0"
+  }
+}

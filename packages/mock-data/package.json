@@ -1,0 +1,15 @@
+{
+  "name": "@maestro/mock-data",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./pms": "./src/pms.ts",
+    "./housekeeping": "./src/housekeeping.ts",
+    "./fnb": "./src/fnb.ts",
+    "./spa": "./src/spa.ts",
+    "./store": "./src/store.ts"
+  }
+}
