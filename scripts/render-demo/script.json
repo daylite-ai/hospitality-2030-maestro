@@ -1,0 +1,128 @@
+{
+  "_comment": "Maestro 2:00 demo video script. All voices ElevenLabs premade. Founder = Eric (smooth trustworthy middle-aged). Maestro = Brian (deep resonant comforting). Three staff radio voices for the cold open. Each line has a target wallclock time in seconds; the Playwright run logs the actual visual event times and ffmpeg anchors audio to whichever is later (max of (script target, visual event)).",
+  "voices": {
+    "founder": { "id": "nPczCjzI2devNBz1zQrb", "name": "Brian" },
+    "maestro": { "id": "JBFqnCBsd6RMkjVDRZzb", "name": "George" },
+    "staff_hk":   { "id": "EXAVITQu4vr4xnSDxMaL", "name": "Sarah" },
+    "staff_desk": { "id": "CwhRBWXzGAHq8TQ4Fs17", "name": "Roger" },
+    "staff_mtc":  { "id": "pNInz6obpgDQGcFmaJgB", "name": "Adam" }
+  },
+  "lines": [
+    {
+      "id": "staff_hk_chaos",
+      "voice": "staff_hk",
+      "target_t": 0.5,
+      "stability": 0.35,
+      "similarity": 0.7,
+      "style": 0.45,
+      "text": "Suite twelve is a deep clean. Red wine on the rug. I need a glassware run."
+    },
+    {
+      "id": "staff_desk_chaos",
+      "voice": "staff_desk",
+      "target_t": 3.2,
+      "stability": 0.35,
+      "similarity": 0.7,
+      "style": 0.4,
+      "text": "Karp party landed at SFO. ETA one hour. Elite repeat guests. Suite twelve."
+    },
+    {
+      "id": "staff_mtc_chaos",
+      "voice": "staff_mtc",
+      "target_t": 6.5,
+      "stability": 0.32,
+      "similarity": 0.7,
+      "style": 0.5,
+      "text": "Madera main is fully booked tonight. I only have the bar."
+    },
+    {
+      "id": "reframe",
+      "voice": "founder",
+      "target_t": 10.5,
+      "stability": 0.55,
+      "similarity": 0.85,
+      "style": 0.45,
+      "text": "That is the sound of a luxury hotel losing five thousand dollars of lifetime value."
+    },
+    {
+      "id": "setup",
+      "voice": "founder",
+      "target_t": 15.5,
+      "stability": 0.55,
+      "similarity": 0.85,
+      "style": 0.35,
+      "text": "This is Maestro. I am the GM. Watch."
+    },
+    {
+      "id": "karp_confirmation",
+      "voice": "maestro",
+      "anchor_event": "karp_complete",
+      "anchor_offset": 0.8,
+      "target_t": 43.0,
+      "stability": 0.65,
+      "similarity": 0.85,
+      "style": 0.35,
+      "text": "Suite fourteen is prepped, with a horse card for Maya and gluten-free snacks. Madera Bar booked for four, at eight."
+    },
+    {
+      "id": "recovery_setup",
+      "voice": "founder",
+      "target_t": 51.0,
+      "stability": 0.55,
+      "similarity": 0.85,
+      "style": 0.45,
+      "text": "Same morning. Real life. Vendors fail."
+    },
+    {
+      "id": "recovery_voice",
+      "voice": "maestro",
+      "anchor_event": "madera_shake",
+      "anchor_offset": 0.4,
+      "target_t": 54.0,
+      "stability": 0.7,
+      "similarity": 0.85,
+      "style": 0.45,
+      "text": "Madera is offline. Switching to Mayfield."
+    },
+    {
+      "id": "recovery_narration",
+      "voice": "founder",
+      "anchor_event": "recovery_voice_end",
+      "anchor_offset": 1.0,
+      "target_t": 58.5,
+      "stability": 0.55,
+      "similarity": 0.85,
+      "style": 0.35,
+      "text": "No human re-prompted. Claude re-planned from partial state."
+    },
+    {
+      "id": "proactive_setup",
+      "voice": "founder",
+      "target_t": 80.0,
+      "stability": 0.55,
+      "similarity": 0.85,
+      "style": 0.4,
+      "text": "Now watch what happens when nobody is in the room."
+    },
+    {
+      "id": "proactive_voice",
+      "voice": "maestro",
+      "anchor_event": "proactive_complete",
+      "anchor_offset": 0.8,
+      "target_t": 95.0,
+      "stability": 0.65,
+      "similarity": 0.85,
+      "style": 0.3,
+      "text": "The Karps are thirty minutes out. Suite twelve is dispatched. Maya's horse card is placed."
+    },
+    {
+      "id": "close",
+      "voice": "founder",
+      "target_t": 108.0,
+      "stability": 0.5,
+      "similarity": 0.85,
+      "style": 0.55,
+      "text": "Every luxury hotel General Manager runs on three radios and a clipboard. We just gave them an agent."
+    }
+  ]
+}
