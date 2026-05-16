@@ -6,6 +6,7 @@ import { SystemColumn } from "@/components/SystemColumn";
 import { TranscriptCard } from "@/components/TranscriptCard";
 import { FloatingIsland } from "@/components/FloatingIsland";
 import { KarpSecretButton } from "@/components/KarpSecretButton";
+import { XRayOverlay } from "@/components/XRayOverlay";
 import type { ToolCallCardData } from "@/components/ToolCallCard";
 
 // Spa is wired end-to-end (server + tools + result renderer) but the canned
@@ -174,8 +175,11 @@ export default function App() {
 
   // ⌘K / `/` → open a quick text input (judges don't see this).
   // ⌘I → open the interrupt input when a turn is mid-stream.
+  // Alt+X → flip the editorial surface and reveal the raw MCP / tool-use
+  //         JSON stream underneath (Anthropic-engineering flex).
   const [textOpen, setTextOpen] = useState(false);
   const [interruptOpen, setInterruptOpen] = useState(false);
+  const [xrayOpen, setXrayOpen] = useState(false);
   const [textValue, setTextValue] = useState("");
   const [interruptValue, setInterruptValue] = useState("");
   const [micActive, setMicActive] = useState(false);
@@ -183,6 +187,13 @@ export default function App() {
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
+      // Alt+X (Opt+X on Mac) flips the editorial surface to the X-Ray view.
+      // Checked first so it works regardless of other open overlays.
+      if (e.altKey && (e.key === "x" || e.key === "X" || e.code === "KeyX")) {
+        e.preventDefault();
+        setXrayOpen((o) => !o);
+        return;
+      }
       if (e.key === "i" && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
         if (view.active && view.turnId) setInterruptOpen((o) => !o);
@@ -192,6 +203,7 @@ export default function App() {
       } else if (e.key === "Escape") {
         setTextOpen(false);
         setInterruptOpen(false);
+        setXrayOpen(false);
       }
     }
     window.addEventListener("keydown", onKey);
@@ -213,6 +225,8 @@ export default function App() {
   return (
     <div className="bg-paper relative flex min-h-screen flex-col">
       <Toaster position="top-center" theme="light" toastOptions={{ duration: 3500 }} />
+
+      <XRayOverlay open={xrayOpen} events={events} onClose={() => setXrayOpen(false)} />
 
       <KarpSecretButton
         onKarp={() => {

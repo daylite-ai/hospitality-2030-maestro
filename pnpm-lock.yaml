@@ -165,6 +165,9 @@ importers:
 
   packages/mcp-helpers:
     dependencies:
+      '@maestro/mock-data':
+        specifier: workspace:*
+        version: link:../mock-data
       '@modelcontextprotocol/sdk':
         specifier: ^1.20.0
         version: 1.29.0(zod@3.25.76)
