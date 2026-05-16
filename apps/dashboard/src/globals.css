@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@theme {
+  /* Rosewood-grade palette — alabaster bg, espresso text, sage/gold accents.
+     This is "Invisible AI / Luxury SaaS", not generic dark dashboard. */
+  --color-alabaster: #f9f8f6;
+  --color-alabaster-deep: #f1ede5;
+  --color-espresso: #1a1713;
+  --color-espresso-soft: #4a423a;
+  --color-charcoal: #6b6259;
+  --color-stone: #b7ad9f;
+  --color-stone-light: #d8cfc1;
+  --color-sage: #839073;
+  --color-sage-deep: #5e6c4f;
+  --color-gold: #c5a880;
+  --color-gold-glow: #d9c19e;
+  --color-clay: #b86a4a;
+
+  --font-display: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", -apple-system, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  background-color: var(--color-alabaster);
+  color: var(--color-espresso);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background-color: var(--color-gold-glow);
+  color: var(--color-espresso);
+}
+
+/* Soft hairlines instead of harsh Tailwind borders */
+@layer base {
+  * {
+    border-color: var(--color-stone-light);
+  }
+}
+
+/* Subtle paper-grain texture for the canvas background — gives Rosewood-tactile feel without a literal image asset */
+.bg-paper {
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(184, 106, 74, 0.025), transparent 40%),
+    radial-gradient(circle at 80% 90%, rgba(131, 144, 115, 0.03), transparent 35%),
+    linear-gradient(180deg, var(--color-alabaster) 0%, var(--color-alabaster-deep) 100%);
+}
+
+.glass-island {
+  background: rgba(249, 248, 246, 0.78);
+  backdrop-filter: blur(28px) saturate(140%);
+  -webkit-backdrop-filter: blur(28px) saturate(140%);
+  border: 1px solid rgba(26, 23, 19, 0.06);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.85) inset,
+    0 14px 40px -16px rgba(26, 23, 19, 0.20),
+    0 2px 8px -2px rgba(26, 23, 19, 0.06);
+}
+
+/* Soft, slow pulse for tools in flight */
+@keyframes thinking-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(197, 168, 128, 0.25); }
+  50%      { box-shadow: 0 0 0 6px rgba(197, 168, 128, 0); }
+}
+.thinking {
+  animation: thinking-pulse 1.6s ease-in-out infinite;
+}
+
+/* Mic-button breath while listening */
+@keyframes mic-breath {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(184, 106, 74, 0.40); }
+  50%      { transform: scale(1.02); box-shadow: 0 0 0 14px rgba(184, 106, 74, 0); }
+}
+.mic-breathing {
+  animation: mic-breath 1.8s ease-out infinite;
+}
