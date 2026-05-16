@@ -16,15 +16,33 @@ import { WebSocketServer, type WebSocket } from "ws";
 import type { TraceEvent } from "@maestro/protocol";
 import { ClaudeLoop, newTurnId } from "./claude-loop.ts";
 import { handleElevenLabsCustomLlm } from "./elevenlabs.ts";
+import type { McpClientPool } from "./mcp-clients.ts";
+
+export const KARP_SCENARIO = [
+  "Suite 12 needs a deep clean — the outgoing guests spilled red wine on the rug.",
+  "David Karp and his family — wife Rachel, two kids — just landed at SFO, about an hour out.",
+  "And Madera's main dining room is fully booked tonight, but the bar still has space.",
+].join(" ");
 
 export interface ServerDeps {
   loop: ClaudeLoop;
+  pool: McpClientPool;
   port: number;
 }
 
 export function startServer(deps: ServerDeps): { close: () => void; broadcast: (e: TraceEvent) => void } {
   const app = new Hono();
   const clients = new Set<WebSocket>();
+
+  // Dashboard runs on :5173 in dev; orchestrator on :4000. Allow CORS so the
+  // single-page app can hit /api/* and /webhook/* directly.
+  app.use("*", async (c, next) => {
+    c.header("Access-Control-Allow-Origin", "*");
+    c.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    c.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    if (c.req.method === "OPTIONS") return c.body(null, 204);
+    await next();
+  });
 
   const broadcast = (e: TraceEvent) => {
     const payload = JSON.stringify(e);
@@ -63,6 +81,31 @@ export function startServer(deps: ServerDeps): { close: () => void; broadcast: (
       broadcast({ type: "turn_error", turnId, message, ts: new Date().toISOString() });
       return c.json({ turnId, error: message }, 500);
     }
+  });
+
+  app.post("/api/reset", async (c) => {
+    await deps.pool.resetAll();
+    broadcast({
+      type: "state_snapshot",
+      ts: new Date().toISOString(),
+      state: { note: "Demo state reset to baseline." },
+    });
+    return c.json({ ok: true });
+  });
+
+  app.post("/api/scenarios/karp", async (c) => {
+    await deps.pool.resetAll();
+    const turnId = newTurnId();
+    // Fire-and-forget so the dashboard can begin rendering events while
+    // Claude is still streaming.
+    void (async () => {
+      try {
+        await deps.loop.runTurn({ turnId, transcript: KARP_SCENARIO, sourceTag: "demo", onTrace: broadcast });
+      } catch (err) {
+        broadcast({ type: "turn_error", turnId, message: (err as Error).message, ts: new Date().toISOString() });
+      }
+    })();
+    return c.json({ ok: true, turnId });
   });
 
   app.post("/webhook/elevenlabs", async (c) => handleElevenLabsCustomLlm(c, deps.loop, broadcast));
