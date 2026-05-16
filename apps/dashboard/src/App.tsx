@@ -7,6 +7,7 @@ import { TranscriptCard } from "@/components/TranscriptCard";
 import { FloatingIsland } from "@/components/FloatingIsland";
 import { KarpSecretButton } from "@/components/KarpSecretButton";
 import { XRayOverlay } from "@/components/XRayOverlay";
+import { AuditDrawer } from "@/components/AuditDrawer";
 import type { ToolCallCardData } from "@/components/ToolCallCard";
 
 // Spa is wired end-to-end (server + tools + result renderer) but the canned
@@ -180,6 +181,7 @@ export default function App() {
   const [textOpen, setTextOpen] = useState(false);
   const [interruptOpen, setInterruptOpen] = useState(false);
   const [xrayOpen, setXrayOpen] = useState(false);
+  const [auditOpen, setAuditOpen] = useState(false);
   const [textValue, setTextValue] = useState("");
   const [interruptValue, setInterruptValue] = useState("");
   const [micActive, setMicActive] = useState(false);
@@ -194,6 +196,11 @@ export default function App() {
         setXrayOpen((o) => !o);
         return;
       }
+      if (e.shiftKey && e.key === "?") {
+        e.preventDefault();
+        setAuditOpen((o) => !o);
+        return;
+      }
       if (e.key === "i" && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
         if (view.active && view.turnId) setInterruptOpen((o) => !o);
@@ -204,6 +211,7 @@ export default function App() {
         setTextOpen(false);
         setInterruptOpen(false);
         setXrayOpen(false);
+        setAuditOpen(false);
       }
     }
     window.addEventListener("keydown", onKey);
@@ -227,6 +235,7 @@ export default function App() {
       <Toaster position="top-center" theme="light" toastOptions={{ duration: 3500 }} />
 
       <XRayOverlay open={xrayOpen} events={events} onClose={() => setXrayOpen(false)} />
+      <AuditDrawer open={auditOpen} events={events} onClose={() => setAuditOpen(false)} />
 
       <KarpSecretButton
         onKarp={() => {
@@ -252,13 +261,23 @@ export default function App() {
             Operations copilot · Rosewood Sand Hill
           </p>
         </div>
-        <div className="text-right">
-          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--color-stone)]">
-            {new Date().toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" })}
-          </p>
-          <p className="font-display text-lg italic text-[color:var(--color-charcoal)]">
-            {connected ? "Stream live" : "Stream offline"}
-          </p>
+        <div className="flex items-center gap-6">
+          <button
+            type="button"
+            onClick={() => setAuditOpen(true)}
+            title="Open reasoning audit (?)"
+            className="font-display text-base italic leading-none text-[color:var(--color-charcoal)] underline decoration-[color:var(--color-stone-light)] decoration-1 underline-offset-[6px] hover:decoration-[color:var(--color-espresso-soft)] hover:text-[color:var(--color-espresso)]"
+          >
+            why?
+          </button>
+          <div className="text-right">
+            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--color-stone)]">
+              {new Date().toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" })}
+            </p>
+            <p className="font-display text-lg italic text-[color:var(--color-charcoal)]">
+              {connected ? "Stream live" : "Stream offline"}
+            </p>
+          </div>
         </div>
       </header>
 
