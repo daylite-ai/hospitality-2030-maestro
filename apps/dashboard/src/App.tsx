@@ -24,11 +24,12 @@ const SYSTEMS: System[] = ["pms", "housekeeping", "fnb"];
 function deriveTurnView(events: TraceEvent[]) {
   let turnId: string | null = null;
   let turnStartedAt: number | null = null;
-  const transcripts: { text: string; ts: string }[] = [];
+  const transcripts: { text: string; ts: string; speaker: "staff" | "gm" }[] = [];
   const calls = new Map<string, ToolCallCardData>();
   let lastThought: string | null = null;
   let spokenResponse: string | null = null;
   let turnDuration: number | null = null;
+  let active = false; // true while a turn is in flight (after turn_started, before turn_completed/error)
 
   for (const ev of events) {
     if (ev.type === "turn_started") {
@@ -40,13 +41,21 @@ function deriveTurnView(events: TraceEvent[]) {
       lastThought = null;
       spokenResponse = null;
       turnDuration = null;
+      active = true;
       continue;
     }
     if (!turnId || (ev as { turnId?: string }).turnId !== turnId) continue;
 
     switch (ev.type) {
       case "transcript":
-        if (ev.speaker === "staff") transcripts.push({ text: ev.text, ts: ev.ts });
+        transcripts.push({ text: ev.text, ts: ev.ts, speaker: ev.speaker });
+        // A gm-speaker transcript mid-flight means an interrupt landed: keep
+        // existing cards (they were the pre-interrupt work) but clear the
+        // thinking buffer + spoken response so the UI re-renders the new plan.
+        if (ev.speaker === "gm") {
+          lastThought = null;
+          spokenResponse = null;
+        }
         break;
       case "assistant_thought":
         // Use the latest sentence-ish slice for the italic line under transcript.
@@ -82,11 +91,13 @@ function deriveTurnView(events: TraceEvent[]) {
         spokenResponse = ev.spokenResponse;
         turnDuration = ev.durationMs;
         lastThought = null;
+        active = false;
         break;
       case "turn_error":
         spokenResponse = `Internal hiccup — ${ev.message}`;
         turnDuration = turnStartedAt ? Date.now() - turnStartedAt : null;
         lastThought = null;
+        active = false;
         break;
     }
   }
@@ -96,6 +107,7 @@ function deriveTurnView(events: TraceEvent[]) {
 
   return {
     turnId,
+    active,
     transcripts,
     thinking: lastThought,
     spokenResponse,
@@ -132,28 +144,47 @@ async function runRecoveryScenario() {
   return res.json();
 }
 
+async function sendInterrupt(turnId: string, text: string) {
+  const res = await fetch(`${ORCH}/api/interrupt`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ turnId, text }),
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({ error: res.statusText }));
+    throw new Error(err.error ?? "interrupt failed");
+  }
+}
+
 export default function App() {
   const { events, connected, reset } = useTraceStream();
   const view = useMemo(() => deriveTurnView(events), [events]);
 
   // ⌘K / `/` → open a quick text input (judges don't see this).
+  // ⌘I → open the interrupt input when a turn is mid-stream.
   const [textOpen, setTextOpen] = useState(false);
+  const [interruptOpen, setInterruptOpen] = useState(false);
   const [textValue, setTextValue] = useState("");
+  const [interruptValue, setInterruptValue] = useState("");
   const [micActive, setMicActive] = useState(false);
   const [busy, setBusy] = useState(false);
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
-      if ((e.key === "k" && (e.metaKey || e.ctrlKey)) || (e.key === "/" && !textOpen)) {
+      if (e.key === "i" && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        if (view.active && view.turnId) setInterruptOpen((o) => !o);
+      } else if ((e.key === "k" && (e.metaKey || e.ctrlKey)) || (e.key === "/" && !textOpen && !interruptOpen)) {
         e.preventDefault();
         setTextOpen((o) => !o);
       } else if (e.key === "Escape") {
         setTextOpen(false);
+        setInterruptOpen(false);
       }
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [textOpen]);
+  }, [textOpen, interruptOpen, view.active, view.turnId]);
 
   async function send(text: string, source: "voice" | "text" | "demo" = "text") {
     if (busy || !text.trim()) return;
@@ -216,6 +247,33 @@ export default function App() {
           ))}
         </div>
       </main>
+
+      {interruptOpen && view.turnId && (
+        <div className="fixed inset-x-0 bottom-28 z-40 mx-auto flex max-w-2xl items-center gap-2 rounded-2xl border border-[color:var(--color-clay)]/55 bg-white/95 px-4 py-3 shadow-[0_0_0_1px_rgba(184,106,74,0.20),0_20px_40px_-20px_rgba(184,106,74,0.35)] backdrop-blur">
+          <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--color-clay)]">
+            GM interjects
+          </span>
+          <input
+            autoFocus
+            value={interruptValue}
+            onChange={(e) => setInterruptValue(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                const tid = view.turnId!;
+                const txt = interruptValue;
+                void sendInterrupt(tid, txt)
+                  .then(() => {
+                    setInterruptValue("");
+                    setInterruptOpen(false);
+                  })
+                  .catch((err) => toast.error((err as Error).message));
+              }
+            }}
+            placeholder="Wait — actually use Villa 3 and add a high chair…"
+            className="flex-1 bg-transparent font-display text-lg italic text-[color:var(--color-espresso)] placeholder:text-[color:var(--color-stone)] focus:outline-none"
+          />
+        </div>
+      )}
 
       {textOpen && (
         <div className="fixed inset-x-0 bottom-28 z-40 mx-auto flex max-w-2xl items-center gap-2 rounded-2xl border border-[color:var(--color-stone-light)] bg-white/95 px-4 py-3 shadow-lg backdrop-blur">

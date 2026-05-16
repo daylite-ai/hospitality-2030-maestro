@@ -65,6 +65,45 @@ function isAdminTool(name: string): boolean {
   return name.startsWith("admin_");
 }
 
+/**
+ * AbortController-style handle the orchestrator passes into runTurn so that
+ * a separate HTTP /api/interrupt call can yank the stream mid-flight and
+ * have Claude re-plan against the latest GM correction.
+ *
+ *   abort("Actually use room 16") → runTurn returns InterruptedTurnState
+ *   with messages preserved up to the last committed tool_result pairing.
+ */
+export class InterruptController {
+  private text: string | null = null;
+  private listeners = new Set<() => void>();
+  readonly internalController = new AbortController();
+
+  get signal(): AbortSignal {
+    return this.internalController.signal;
+  }
+
+  abort(text: string): void {
+    if (this.text != null) return; // already aborted
+    this.text = text;
+    this.internalController.abort();
+    for (const l of this.listeners) l();
+  }
+
+  isAborted(): boolean {
+    return this.text != null;
+  }
+
+  /** Reason the interrupt fired — the new GM transcript. */
+  get reason(): string | null {
+    return this.text;
+  }
+
+  onAbort(cb: () => void): () => void {
+    this.listeners.add(cb);
+    return () => this.listeners.delete(cb);
+  }
+}
+
 export function toAnthropicTools(tools: ToolDescriptor[]): Anthropic.Tool[] {
   return tools
     .filter((t) => !isAdminTool(t.name))
@@ -74,6 +113,23 @@ export function toAnthropicTools(tools: ToolDescriptor[]): Anthropic.Tool[] {
       input_schema: t.inputSchema as Anthropic.Tool.InputSchema,
     }));
 }
+
+/** State an interrupt can hand back so the orchestrator can spin a follow-up
+ * turn with full prior context. */
+export interface InterruptedTurnState {
+  interrupted: true;
+  interruptText: string;
+  messages: Anthropic.MessageParam[];
+  toolCallCount: number;
+}
+
+export interface CompletedTurnState {
+  interrupted: false;
+  spokenResponse: string;
+  toolCallCount: number;
+}
+
+export type TurnResult = CompletedTurnState | InterruptedTurnState;
 
 export class ClaudeLoop {
   private anthropic: Anthropic;
@@ -87,32 +143,85 @@ export class ClaudeLoop {
     transcript: string;
     onTrace: TraceSink;
     sourceTag: "voice" | "text" | "demo";
-  }): Promise<{ spokenResponse: string; toolCallCount: number }> {
-    const { turnId, transcript, onTrace, sourceTag } = opts;
+    /** Optional. When set, an external caller can abort this turn mid-stream
+     * by calling controller.abort(text) where text becomes the next user
+     * turn ("Wait — actually use room 16"). */
+    interruptController?: InterruptController;
+    /** Optional pre-existing message history (used when re-entering after an
+     * interrupt). The transcript is appended to it as the next user turn. */
+    priorMessages?: Anthropic.MessageParam[];
+  }): Promise<TurnResult> {
+    const { turnId, transcript, onTrace, sourceTag, interruptController } = opts;
     const startedAt = Date.now();
 
-    onTrace({ type: "turn_started", turnId, startedAt: new Date(startedAt).toISOString(), source: sourceTag });
-    onTrace({ type: "transcript", turnId, text: transcript, speaker: "staff", ts: new Date().toISOString() });
+    const isContinuation = (opts.priorMessages?.length ?? 0) > 0;
+    if (!isContinuation) {
+      onTrace({ type: "turn_started", turnId, startedAt: new Date(startedAt).toISOString(), source: sourceTag });
+    }
+    onTrace({
+      type: "transcript",
+      turnId,
+      text: transcript,
+      speaker: isContinuation ? "gm" : "staff",
+      ts: new Date().toISOString(),
+    });
 
     const tools = toAnthropicTools(await this.pool.listAllTools());
 
-    const messages: Anthropic.MessageParam[] = [{ role: "user", content: transcript }];
+    // Build messages array. Anthropic requires strict user/assistant
+    // alternation — when re-entering after an interrupt, the last message in
+    // priorMessages is typically a user-role tool_results bag, so we MERGE
+    // the new transcript into it rather than pushing a second user message.
+    const messages: Anthropic.MessageParam[] = opts.priorMessages
+      ? [...opts.priorMessages]
+      : [];
+    const interruptLabel =
+      opts.priorMessages && opts.priorMessages.length > 0
+        ? `[GM interjects]: ${transcript}`
+        : transcript;
+    const last = messages[messages.length - 1];
+    if (last && last.role === "user") {
+      if (typeof last.content === "string") {
+        last.content = `${last.content}\n\n${interruptLabel}`;
+      } else {
+        last.content = [
+          ...last.content,
+          { type: "text" as const, text: interruptLabel },
+        ];
+      }
+    } else {
+      messages.push({ role: "user", content: interruptLabel });
+    }
     let spokenResponse = "";
     let toolCallCount = 0;
 
     for (let iter = 0; iter < MAX_LOOP_ITERATIONS; iter++) {
-      const stream = this.anthropic.messages.stream({
-        model: MODEL,
-        max_tokens: MAX_TOKENS,
-        system: MAESTRO_SYSTEM_PROMPT,
-        tools,
-        messages,
-      });
+      // Bail before each iteration if an interrupt has already landed.
+      if (interruptController?.isAborted()) {
+        return {
+          interrupted: true,
+          interruptText: interruptController.reason ?? "",
+          messages,
+          toolCallCount,
+        };
+      }
+
+      const stream = this.anthropic.messages.stream(
+        {
+          model: MODEL,
+          max_tokens: MAX_TOKENS,
+          system: MAESTRO_SYSTEM_PROMPT,
+          tools,
+          messages,
+        },
+        interruptController ? { signal: interruptController.signal } : undefined,
+      );
 
       const pending = new Map<number, PendingToolUse>();
       const assistantBlocks: Anthropic.ContentBlock[] = [];
       let textBuffer = "";
 
+      try {
       for await (const event of stream) {
         switch (event.type) {
           case "content_block_start": {
@@ -165,6 +274,18 @@ export class ClaudeLoop {
             break;
           }
         }
+      }
+      } catch (err) {
+        // Aborted stream — clean exit with the interrupt's new transcript.
+        if (interruptController?.isAborted()) {
+          return {
+            interrupted: true,
+            interruptText: interruptController.reason ?? "",
+            messages,
+            toolCallCount,
+          };
+        }
+        throw err;
       }
 
       const finalMessage = await stream.finalMessage();
@@ -266,7 +387,7 @@ export class ClaudeLoop {
       ts: new Date().toISOString(),
     });
 
-    return { spokenResponse, toolCallCount };
+    return { interrupted: false, spokenResponse, toolCallCount };
   }
 }
 
