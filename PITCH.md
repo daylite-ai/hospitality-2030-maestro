@@ -1,192 +1,261 @@
 # Maestro — 2-minute pitch (Hospitality 2030)
 
-Read this once cold. Don't open slides. The demo is the slide.
+Read this cold. Don't open slides. The demo is the slide. Three escalation
+beats: **Karp → Recovery → Proactive.** Phone reveal at 1:23. Close on a
+dare from the front edge.
 
 ---
 
-## Pre-flight (T -15 min, bathroom)
+## T-5 min — pre-flight (bathroom)
 
-- 30 seconds of physiological sighs: two quick inhales, one long exhale.
-  Repeat. Heart rate drops from spike to baseline so your hands don't
-  shake on the mic.
-- Do **not** look at the laptop for the last 5 minutes. Staring at the
-  dashboard now breeds phantom bugs in your head.
+- Three rounds of physiological sighs (Stanford Balban et al. 2023):
+  two quick inhales, one long exhale. Repeat.
+- Paper-towel the hands. Sweaty fingers miss keys.
+- Unpair / re-pair AirPods. Mac System Settings → input = AirPods,
+  output = Room AV (HDMI).
+- Mirror mode on the laptop. Not Extended. Not auto-detect. Mirror.
+- Phone face-down on the podium. Airplane-mode on until T-30 sec.
+- Whisper to the wall, three times, 20% slower than normal cadence:
+  *"That is the sound of a luxury hotel losing five thousand dollars
+  of lifetime value."*
+- Cue the 10-second radio audio file. Finger on the trigger key.
+- Do NOT open Twitter. Do NOT refresh CodeRabbit. Do NOT talk to the
+  previous team. Tunnel vision.
 
-## Pre-flight (T -2 min, side of stage)
+## The five anchors (one whisper-line)
 
-- Laptop on **Mirror Mode** (not Extended). System Settings → Displays →
-  Use as: Mirror. Cursor stays visible to you and to the room.
-- AirPod in **one ear only**. Mac audio:
-  - **Input** = AirPods
-  - **Output** = Room AV (HDMI / projector audio)
-  This is the single most important pre-flight item. It prevents the
-  feedback-loop-of-death where ElevenLabs hears its own TTS through the
-  laptop mic and hallucinates.
-- Backup video pre-loaded in a separate macOS Desktop (three-finger
-  swipe to reach). QuickTime, 1080p, no voiceover. See [BACKUP_VIDEO.md](BACKUP_VIDEO.md).
-- Tweet thread pre-drafted, scheduled to auto-publish exactly **5
-  minutes after your slot ends**. See [TWEET.md](TWEET.md).
+> *Karp. Recovery. Phone reveal. Walk. Close.*
 
 ---
 
-## 0:00 — Cold open (no introduction)
+## 0:00 — Cold open (silent walk on)
 
-Walk up. Plug in. Don't say your name. Hit play on the **radio chaos
-clip** (10-second pre-recorded audio of staff radio):
+Walk on. No "hi my name is." No title slide. Hit the radio audio key as
+your foot hits center stage. Ten seconds of staff radio cacophony — *the
+GM yells "Maintenance, burst pipe 4B," housekeeping rushes 12, front
+desk says the VIP just pulled up.*
 
-> *Maintenance, we have a burst pipe in 4B. Housekeeping, I need a rush
-> on 12. Front desk, the VIP just pulled up.*
+## 0:10 — Reframe + Karp trigger
 
-Mute it. Then, looking at the front row (Greycroft and Anthropic
-benches), say:
+Hit the Karp hatch (top-right corner). First cards spawn. Look at the
+front bench (Greycroft and Anthropic) and say:
 
-> **"That is the sound of a luxury hotel losing five thousand dollars in
-> lifetime value because three people are talking and nobody is typing.
-> I built Maestro to turn radio chaos into instant database execution."**
+> **"That is the sound of a luxury hotel losing $5,000 of lifetime
+> value because three people are talking and nobody is typing."**
 
-Click the mic.
+## 0:14 — One setup sentence, then silent
 
-## 0:15 — Demo (90 seconds, mostly silent)
+> *"This is Maestro. I'm the GM. I just gave three voice orders. Watch."*
 
-Speak the canned 3-radio sequence into the AirPod. Let the dashboard
-speak.
+Then **shut up.** 28 seconds of fan-out animation. Don't narrate API
+calls. Don't say "Claude is checking Mews." The room can read the
+dashboard faster than you can describe it.
 
-> "Suite 12 needs a deep clean — the outgoing guests spilled red wine on
-> the rug."
->
-> "David Karp and his family — wife Rachel, two kids — just landed at
-> SFO, about an hour out."
->
-> "And Madera's main dining room is fully booked tonight, but the bar
-> still has space."
+## 0:42 — The spoken confirmation lands
 
-Watch the fan-out graph light up. The cards spawn. The 15-word
-confirmation lands. **Don't talk over it.**
+ElevenLabs plays Maestro's 18-word voice line through the room AV. You
+stand still. Don't mouth-along. Don't nod approvingly. Let the audio
+carry the room.
 
-Allow yourself **one** unscripted reaction line if the fan-out lands
-crisp. Something like: *"Watch the fan-out here — four systems updated
-in under a second."* One reaction beat. Not a narration track.
+## 0:50 — Recovery trigger
 
-**If wifi tanks** (>4-second WS hang): three-finger swipe to backup
-video, hit spacebar, voice over it:
+Hit the Recovery hatch. One sentence as the dashboard re-fans:
 
-> *"Conference Wi-Fi is fighting the voice stream — switching to local
-> fallback execution."*
+> *"Same morning. Real life. Vendors fail."*
 
-Half the room won't realise it's a video.
+## 0:52–0:55 — THE ASYMMETRIC SECOND
 
-## 1:45 — Why now (15 seconds)
+The Madera card shakes red. ElevenLabs voices *"switching to Mayfield."*
 
-> Mews just raised three hundred million in January at a two and a half
-> billion valuation — the largest funding round in hotel software ever.
-> Otelier's January index says the average hotel runs more than seven
-> platforms and spends eleven hours a week reconciling them. The thesis
-> is funded. The plumbing isn't yet built.
+**Stop speaking. Take your hands visibly off the laptop. Hold one beat
+after Claude finishes.** This is the second the demo wins or loses. Every
+team will fill silence. You won't.
 
-## 2:00 — The ask + the QR
+## 0:55 — One narration beat
 
-Step away from the podium. Walk to the front edge of the stage. Hands
-out of your pockets. Eye contact with the Greycroft bench.
+After the new green Mayfield card snaps into place:
 
-> **"I built this solo in eight hours on Claude Opus 4.7, the Model
-> Context Protocol, and ElevenLabs. With one Mews or one Opera adapter,
-> this is the GM operating layer Rosewood doesn't have."**
+> *"No human re-prompted. Claude re-planned from partial state."*
 
-Then point at the dashboard, which now shows a clean QR code:
+Then silent again. Let the rest of the cards complete.
 
-> **"QR is on screen — fifteen-minute tech deep-dive on the other side.
-> Thank you."**
+## 1:20 — Proactive trigger
 
-Pause. Smile. Yield the floor. Walk briskly back to your seat.
+Half-turn toward the front bench. Hit the Proactive hatch.
+
+> *"Now watch what happens when nobody's in the room."*
+
+## 1:23 — Maestro wakes itself
+
+PMS clock ticks. Sage "PMS · clock advance" pill appears in the
+transcript. Cards begin spawning unprompted. No staff radio. No GM input.
+
+## 1:25–1:35 — THE PHONE REVEAL
+
+Pick up the phone from behind the laptop. Screen out, chest height. The
+/operator card is already there — *"Suite 12 · Deep clean · Urgent · red
+wine spill."* No guest name on the housekeeper view.
+
+Long-press. The GM dashboard's matching card flips to **"✓ acknowledged
+· floor"** with sage glow.
+
+Eye contact with the front bench while the phone is doing its thing.
+Trust the punchline.
+
+## 1:35 — Maestro voices the GM unprompted
+
+ElevenLabs plays the proactive briefing — *"Karp ETA 30 min. Suite 12
+dispatched. Maya's horse card placed."* — without anyone speaking first.
+
+## 1:50 — Walk to the front edge
+
+Two slow steps to the front edge of the stage. Hands out of pockets.
+Look at the Greycroft bench, then Anthropic, then ElevenLabs.
+
+## 1:55 — Closing line (the dare)
+
+> **"Every luxury hotel GM in this country runs on three radios and a
+> clipboard. We just gave them an agent. Who in this room wants to spend
+> the night here without one?"**
+
+One beat of silence. Turn. Walk back to the laptop. Do NOT say "thank
+you" — let the MC take the mic.
 
 ---
 
 ## What NOT to say
 
-- **Do not** say "we're replacing Mews / Opera." You're the
-  interoperability layer above them. VCs reward interoperability plays.
-- **Do not** mention prompt engineering, MCP transports, or tool-use
-  loops. Judges either already know or already don't care.
-- **Do not** apologise. If a tool errors on stage, the dashboard shows
-  a clay-tinted result card and Claude says so. Just move on.
-- **Do not** say "demo god" or "fingers crossed". Signals you don't
-  trust the build.
-- **Do not** offer business cards or "let's connect on LinkedIn". The
-  QR is the ask.
-- **Do not** look behind you at the projector mid-demo. The judges face
-  the projector; you face the laptop, and you make eye contact with the
-  front row.
+- No "Hi, my name is."
+- No "AI" before establishing the human problem.
+- No "Claude is now checking the PMS."
+- No "I built this in 36 hours."
+- No "Any questions?" — let the MC ask.
+- No global $1.6T hospitality TAM. Stay in the $600M luxury wedge.
+- No emoji. No "demo god." No "fingers crossed."
+- No touching the phone screen. Hold it. Don't tap.
+- No looking behind you at the projector. Eye contact stays with the
+  front bench.
 
-## Q&A — three sentences each, memorised cold
+## Q&A — Acknowledge → answer → reframe to roadmap
 
-**"How is this not just a feature Mews or Opera will build next
-quarter?"**
-→ *Mews is a system of record. They excel at database integrity, not
-cross-platform orchestration. Incumbents move slowly to protect their
-walled gardens; Maestro is the agnostic intelligence layer that reads
-and writes across all of them through standard MCPs.*
+Every answer follows that arc. No silent-stare parries. No Socratic
+counter-questions. Total time per answer: ≈45 seconds.
 
-**"What's the moat if Opus 5 comes out next month?"**
-→ *Opus 5 will drop our token costs and reduce latency, which only
+### "Isn't this just a $20/mo SaaS that Canary will ship next quarter?"
+
+*"Canary is the right comparison — they won HotelTechReport's first
+Best Voice Bot award in January. So the question is real. But Canary
+lives in the guest-comms layer. Maestro lives one layer up, in the GM's
+operational graph. Canary sends the upsell email. Maestro decides which
+staff member, which suite, which vendor, at which moment. They'll
+integrate with us before they compete with us. What this unlocks next is
+the GM trust-graph — fourteen weeks of which staff get pinged for what,
+which vendors fail when. Mews can't ship that. They don't have the data."*
+
+### "Aren't you a feature Mews will build in six months?"
+
+*"Mews is the obvious acquirer. They're a system of record — fundamentally
+quarterly, not millisecond. We're the read-write intelligence layer above
+their data layer. We've architected for that exit from week one. The
+moat isn't the LLM; it's the operational graph that compounds inside a
+single property."*
+
+### "What about Opus 5?"
+
+*"Opus 5 drops our token costs and reduces our latency — that only
 expands our margins. The true moat is the proprietary mapping of
-unstructured hotel operations into strict, fault-tolerant MCP tool
-chains — that takes deep domain expertise, not just a smarter LLM.*
+unstructured hotel operations into strict, fault-tolerant MCP tool chains.
+That takes domain expertise, not a smarter LLM."*
 
-**"Aren't you just another AI concierge?"**
-→ *Concierges are guest-facing. Canary already shipped Concierge Studio
-templates in March. Maestro is staff-facing. We are not in Canary's
-category. We are in Mews's category.*
+### "What happens when it double-books a VIP?"
 
-**"How would Rosewood deploy this against their real PMS?"**
-→ *MCP adapters. The four tools we ship today are MCP servers. The same
-shape adapts to Mews, Opera, Cloudbeds, RoomRaccoon. One production
-adapter per quarter; first three hotels on Mews-only takes about ten
-weeks.*
+*"State-mutating tools require strict input schemas. The MCP server
+rejects writes that contradict local state. Read-only tools execute in
+parallel; state-mutating tools execute serially. Double-booking is
+mathematically impossible inside one turn. Across two concurrent
+sessions, the second write rejects with a 409 — Claude re-plans on the
+next turn."*
 
-**"What about data privacy?"**
-→ *Self-hosted by design. Maestro runs inside the property's network.
-No guest record leaves the building. Claude handles only reasoning on
-Anthropic's API; payloads are room IDs, not PII, when we route to
-production tools.*
+### "How would Rosewood actually deploy this against your real PMS?"
 
-**"What's the business model?"**
-→ *Per-property SaaS plus per-action metered usage on the voice channel.
-Comparable unit economics to Mews and Canary. Rosewood-tier properties'
-willingness-to-pay is north of two thousand dollars per room per month
-for staff productivity software they actually trust on the floor.*
+*"Shadow mode for thirty days. Maestro observes every staff radio call
+and logs the decision it would have made. The GM reviews the log nightly.
+No guest-affecting action until the GM enables write mode per system,
+one at a time. Adapters: one production MCP wrapper per quarter; Mews,
+Opera, Cloudbeds, RoomRaccoon in that order."*
 
-**"What if Claude is wrong?"**
-→ *Every action is reversible by the GM in one tap on the same
-dashboard. The audit log is permanent. Tools that mutate state require
-a structured input schema, so the model cannot invent rooms or guests.*
+### "Which model? How do you know it's not hallucinating?"
 
-## What NOT to rehearse
+*"Opus 4.7 for the planning agent with an eval harness on every tool
+call — we score against a two-hundred-case golden set built from real
+GM radio logs. Sonnet handles the proactive loop because the latency
+budget there is ninety seconds, not ninety milliseconds, and the cost
+delta funds ten times the wake-ups. We don't ship a tool whose eval
+sits under 95%."*
 
-Script your **first 15 seconds** (the radio-clip cold open) and your
-**last 15 seconds** (the ask + QR). Memorise those word-for-word.
+### "Latency?"
 
-**Let the middle 90 seconds breathe.** If you over-rehearse it you
-sound like a text-to-speech engine. VCs fund authentic humans obsessed
-with the problem, not robots reading a teleprompter. If the graph fans
-out perfectly, react to it like a human would.
+*"Sub-seven-hundred-millisecond end-to-end from radio key-up to spoken
+confirmation. ElevenLabs Flash v2.5 for the eighteen-word confirms,
+Conversational AI 2.0 for barge-in. One cloned voice ID per property —
+Rosewood Sand Hill has its own. Voice is the right surface here because
+the GM's hands are on a radio, not a keyboard."*
 
-## Post-stage (the next 60 minutes is when the seed round happens)
+### "Show me what mid-stream interruption looks like."
 
-1. **T +0:00** — Walk off, sit down. Do not check Twitter. Watch the
-   next team's demo with attention — judges notice.
-2. **T +0:05** — Pre-scheduled tweet thread auto-publishes. See
-   [TWEET.md](TWEET.md). Don't touch it.
-3. **T +0:20** — During the break, the Greycroft partner will already
-   have your one-pager open from the QR. Walk over to their table, not
-   to their face. Stand at the edge. Wait for eye contact. *"Want me to
-   show you the inside of the orchestrator?"* If they say yes, sit
-   down. If they say "I'll grab you later", smile and step away.
-4. **T +0:45** — Anthropic Applied AI lead has different incentives.
-   Pitch them the engineering: parallel MCP, sequential mutations,
-   `<thinking>` block. They reward the *implementation*, not the
-   business.
-5. **T +1:00** — DM the Greycroft partner on X with one screenshot
-   from the demo and the line *"Thanks for the conversation — calendar
-   in the one-pager."* No follow-up for 48 hours.
+This is when you demo barge-in. Hit Cmd+I. Type *"Wait — Maya wants
+vegan snacks."* Claude re-plans. Total: 15 seconds. Don't talk over it.
 
-That's the playbook. Now go control the room.
+### "Privacy?"
+
+*"Self-hosted by design. Maestro runs inside the property's network. No
+guest record leaves the building. Claude handles reasoning on Anthropic's
+API; the payloads are room IDs and preference tags, not PII. The
+housekeeper's mobile view strips guest names — they see room number,
+clean type, constraint flag. That's the Rosewood discretion calculus
+made explicit."*
+
+---
+
+## Failure modes & recoveries
+
+- **WiFi tanks mid-Karp** → three-finger swipe to Desktop 2, spacebar
+  plays the pre-recorded fallback video (see BACKUP_VIDEO.md). Voice
+  over it calmly: *"Conference wifi is fighting the voice stream.
+  Switching to local fallback execution."* Don't apologise. Don't try
+  to recover live.
+- **Madera card doesn't shake on Recovery** → keep going. The next
+  tool call still resolves to Mayfield. The narration ("Claude
+  re-planned from partial state") still lands.
+- **Proactive voice doesn't fire** → the dashboard still spawns cards
+  unprompted, which is the load-bearing visual. Verbalise the
+  voice-line yourself in a level voice if it's silent.
+- **Hostile question on stage** → Acknowledge ("That's exactly the
+  question I'd ask"), answer with the memorised parry, forward-bridge
+  to roadmap. Never Socratic. Never silent-stare.
+- **Phone reveal fails** → drop the phone to your side, point at the
+  GM dashboard's incoming `staff_ack` event (the sage-glow card),
+  verbalise: *"That's the housekeeper acknowledging from her phone right
+  now."*
+
+---
+
+## Post-stage (the seed round happens in the next 60 minutes)
+
+1. **T+0:00** — walk off, sit. Don't check Twitter.
+2. **T+0:05** — pre-scheduled tweet thread (TWEET.md) auto-publishes.
+   Don't touch it.
+3. **T+0:20** — during the next team's slot, the Greycroft partner is
+   already opening your Notion one-pager from the QR. After the next
+   team, walk to their table, stand at the edge. Wait for eye contact.
+   *"Want me to show you the inside of the orchestrator?"* If yes, sit
+   down. If "later," smile and step away.
+4. **T+0:45** — the Anthropic Applied AI lead has different
+   incentives. Pitch them the engineering: parallel MCP, sequential
+   mutations, `<thinking>` block, eval harness. They reward the
+   *implementation*.
+5. **T+1:00** — DM the Greycroft partner on X with one screenshot from
+   the demo and *"Thanks for the conversation — calendar in the
+   one-pager."* No follow-up for 48 hours.
+
+That's the playbook. Karp. Recovery. Phone reveal. Walk. Close. Go.
