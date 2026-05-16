@@ -76,6 +76,29 @@ await startStdioServer(
     );
 
     server.registerTool(
+      "admin_advance_guest_eta",
+      {
+        title: "(internal) Fast-forward a guest's arrival ETA",
+        description:
+          "Internal demo control. The orchestrator's /api/scenarios/proactive endpoint calls this to bump a guest's ETA to N minutes from now, simulating the PMS clock advancing. NOT for general use.",
+        inputSchema: {
+          guestIdOrName: z.string().trim().min(1),
+          minutesFromNow: z.number().int().min(0).max(360),
+        },
+      },
+      safeHandler(async ({ guestIdOrName, minutesFromNow }: { guestIdOrName: string; minutesFromNow: number }) => {
+        const needle = guestIdOrName.trim();
+        if (!needle) return { ok: false, text: "guestIdOrName must be non-empty." };
+        const g = pms.findGuestByName(needle) ?? pms.getGuest(needle);
+        if (!g) return { ok: false, text: `No guest matching "${needle}".` };
+        const newEta = new Date(Date.now() + minutesFromNow * 60_000).toISOString();
+        const r = pms.updateGuestEta(g.id, newEta);
+        if (!r.ok) return { ok: false, text: r.error ?? "Failed" };
+        return { ok: true, text: `ETA for ${g.primaryName} now ${minutesFromNow} minutes (${newEta}).` };
+      }),
+    );
+
+    server.registerTool(
       "pms_update_guest_eta",
       {
         title: "Update guest arrival ETA",

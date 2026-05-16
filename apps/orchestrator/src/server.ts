@@ -24,6 +24,20 @@ export const KARP_SCENARIO = [
   "And Madera's main dining room is fully booked tonight, but the bar still has space.",
 ].join(" ");
 
+/**
+ * Proactive (zero-click) scenario: Maestro wakes up on its own when the PMS
+ * clock shows the Karps are 30 minutes out and Suite 12 is still dirty.
+ * The Greycroft "autopilot, not copilot" thesis dramatised on stage.
+ */
+export const PROACTIVE_PROMPT = [
+  "[PMS clock advance] The Karp family arrival ETA has been refreshed to 30 minutes from now.",
+  "Suite 12 (their original assignment) is still vacant_dirty — the previous guest's red wine spill has not been cleared.",
+  "Take initiative immediately. No one is asking you. Prepare the family's arrival end-to-end —",
+  "reassign them to the next suitable suite, schedule housekeeping for 12, queue personalised amenities,",
+  "and confirm or reserve their dinner — then close with one concise spoken confirmation addressed to the GM",
+  "in the voice of a chief-of-staff briefing the boss without being asked.",
+].join(" ");
+
 export interface ServerDeps {
   loop: ClaudeLoop;
   pool: McpClientPool;
@@ -47,6 +61,7 @@ export function startServer(deps: ServerDeps): { close: () => void; broadcast: (
   async function runInterruptibleTurn(
     transcript: string,
     sourceTag: "voice" | "text" | "demo",
+    options: { transcriptSpeaker?: "staff" | "system" } = {},
   ): Promise<{ turnId: string; spokenResponse: string; toolCallCount: number; interrupted: boolean }> {
     const turnId = newTurnId();
     let controller = new InterruptController();
@@ -64,6 +79,7 @@ export function startServer(deps: ServerDeps): { close: () => void; broadcast: (
           onTrace: broadcast,
           interruptController: controller,
           priorMessages,
+          transcriptSpeaker: options.transcriptSpeaker,
         });
         totalToolCallCount += r.toolCallCount;
         if (!r.interrupted) {
@@ -212,11 +228,11 @@ export function startServer(deps: ServerDeps): { close: () => void; broadcast: (
   /**
    * Staff /operator mobile back-channel.
    *
-   * When a housekeeper or F&B server swipes a task complete on their phone,
+   * When a housekeeper or F&B server long-presses a task on their phone,
    * the mobile surface POSTs here. We rebroadcast as a staff_ack event so
-   * every connected dashboard (GM laptop) sees the corresponding tool-call
-   * card animate from "done" to "ready-acknowledged". The motion design IS
-   * the proof that orchestration closes the loop in real time.
+   * every connected GM dashboard sees the corresponding tool-call card
+   * animate from "done" to "✓ acknowledged · floor". The motion is the
+   * proof that orchestration closes the loop in real time.
    */
   app.post("/api/operator/ack", async (c) => {
     const body = (await c.req.json().catch(() => ({}))) as {
@@ -235,6 +251,38 @@ export function startServer(deps: ServerDeps): { close: () => void; broadcast: (
       ts: new Date().toISOString(),
     });
     return c.json({ ok: true });
+  });
+
+  /**
+   * Proactive / "autopilot" scenario.
+   *
+   *   1. Reset to baseline (everyone in their seeded rooms; suite 12 dirty).
+   *   2. Bump Karp ETA to 30 minutes from now via admin_advance_guest_eta —
+   *      so Claude's pms_get_guest_by_name reflects the urgency.
+   *   3. Fire a synthesised system message framed as a PMS clock advance,
+   *      not a staff radio. Claude acts unprompted, voices the GM.
+   */
+  app.post("/api/scenarios/proactive", async (c) => {
+    await deps.pool.resetAll();
+    try {
+      const r = await deps.pool.callTool("admin_advance_guest_eta", {
+        guestIdOrName: "Karp",
+        minutesFromNow: 30,
+      });
+      if (!r.ok) return c.json({ error: `eta advance failed: ${r.text}` }, 500);
+    } catch (err) {
+      return c.json({ error: `eta advance threw: ${(err as Error).message}` }, 500);
+    }
+    void (async () => {
+      try {
+        await runInterruptibleTurn(PROACTIVE_PROMPT, "demo", { transcriptSpeaker: "system" });
+      } catch (err) {
+        const message = (err as Error).message;
+        const tid = newTurnId();
+        broadcast({ type: "turn_error", turnId: tid, message, ts: new Date().toISOString() });
+      }
+    })();
+    return c.json({ ok: true, scenario: "proactive" });
   });
 
   app.post("/webhook/elevenlabs", async (c) => handleElevenLabsCustomLlm(c, deps.loop, broadcast));

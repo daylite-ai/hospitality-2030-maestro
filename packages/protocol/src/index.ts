@@ -30,7 +30,7 @@ export interface TranscriptEvent {
   type: "transcript";
   turnId: string;
   text: string;
-  speaker: "staff" | "gm";
+  speaker: "staff" | "gm" | "system";
   ts: string;
 }
 
