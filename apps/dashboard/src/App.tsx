@@ -8,7 +8,11 @@ import { FloatingIsland } from "@/components/FloatingIsland";
 import { KarpSecretButton } from "@/components/KarpSecretButton";
 import type { ToolCallCardData } from "@/components/ToolCallCard";
 
-const SYSTEMS: System[] = ["pms", "housekeeping", "fnb", "spa"];
+// Spa is wired end-to-end (server + tools + result renderer) but the canned
+// demo scenario doesn't touch it. Empty columns read as "incomplete" to
+// judges, so we render only the three the demo activates. Spa stays in the
+// codebase and re-enables the moment a scenario uses it.
+const SYSTEMS: System[] = ["pms", "housekeeping", "fnb"];
 
 /**
  * Distil the raw trace stream into the shape the UI actually renders:
