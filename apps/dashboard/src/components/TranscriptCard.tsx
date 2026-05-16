@@ -4,7 +4,7 @@ import { formatClock } from "@/lib/utils";
 import { QrPanel } from "./QrPanel";
 
 interface Props {
-  transcripts: { text: string; ts: string; speaker: "staff" | "gm" }[];
+  transcripts: { text: string; ts: string; speaker: "staff" | "gm" | "system" }[];
   thinking: string | null;
   spokenResponse: string | null;
   toolCount: number;
@@ -41,6 +41,24 @@ export function TranscriptCard({ transcripts, thinking, spokenResponse, toolCoun
       )}
 
       {transcripts.map((t, i) => {
+        if (t.speaker === "system") {
+          return (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.25 }}
+              className="flex items-start gap-3 rounded-lg border border-[color:var(--color-sage)]/40 bg-[color:var(--color-sage)]/6 px-3 py-2"
+            >
+              <span className="font-mono text-[9.5px] uppercase tracking-[0.28em] text-[color:var(--color-sage-deep)] whitespace-nowrap">
+                PMS · clock advance
+              </span>
+              <p className="flex-1 font-display text-[18px] italic leading-snug text-[color:var(--color-espresso-soft)]">
+                Maestro is acting unprompted.
+              </p>
+            </motion.div>
+          );
+        }
         const isGm = t.speaker === "gm";
         return (
           <motion.p

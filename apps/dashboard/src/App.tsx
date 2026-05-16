@@ -24,7 +24,7 @@ const SYSTEMS: System[] = ["pms", "housekeeping", "fnb"];
 function deriveTurnView(events: TraceEvent[]) {
   let turnId: string | null = null;
   let turnStartedAt: number | null = null;
-  const transcripts: { text: string; ts: string; speaker: "staff" | "gm" }[] = [];
+  const transcripts: { text: string; ts: string; speaker: "staff" | "gm" | "system" }[] = [];
   const calls = new Map<string, ToolCallCardData>();
   let lastThought: string | null = null;
   let spokenResponse: string | null = null;
@@ -150,6 +150,12 @@ async function runRecoveryScenario() {
   return res.json();
 }
 
+async function runProactiveScenario() {
+  const res = await fetch(`${ORCH}/api/scenarios/proactive`, { method: "POST" });
+  if (!res.ok) throw new Error("Failed to start proactive scenario");
+  return res.json();
+}
+
 async function sendInterrupt(turnId: string, text: string) {
   const res = await fetch(`${ORCH}/api/interrupt`, {
     method: "POST",
@@ -216,6 +222,10 @@ export default function App() {
         onRecovery={() => {
           reset();
           void runRecoveryScenario().catch((err) => toast.error((err as Error).message));
+        }}
+        onProactive={() => {
+          reset();
+          void runProactiveScenario().catch((err) => toast.error((err as Error).message));
         }}
       />
 

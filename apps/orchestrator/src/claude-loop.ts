@@ -150,6 +150,10 @@ export class ClaudeLoop {
     /** Optional pre-existing message history (used when re-entering after an
      * interrupt). The transcript is appended to it as the next user turn. */
     priorMessages?: Anthropic.MessageParam[];
+    /** Override the broadcast transcript speaker. Default "staff" (radio
+     * dispatch); use "system" for proactive scenarios where the trigger is
+     * a PMS clock advance, not a human radio message. */
+    transcriptSpeaker?: "staff" | "system";
   }): Promise<TurnResult> {
     const { turnId, transcript, onTrace, sourceTag, interruptController } = opts;
     const startedAt = Date.now();
@@ -162,7 +166,7 @@ export class ClaudeLoop {
       type: "transcript",
       turnId,
       text: transcript,
-      speaker: isContinuation ? "gm" : "staff",
+      speaker: isContinuation ? "gm" : (opts.transcriptSpeaker ?? "staff"),
       ts: new Date().toISOString(),
     });
 
