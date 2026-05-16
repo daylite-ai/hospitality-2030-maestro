@@ -108,6 +108,36 @@ export function startServer(deps: ServerDeps): { close: () => void; broadcast: (
     return c.json({ ok: true, turnId });
   });
 
+  /**
+   * Recovery / self-healing demo.
+   *
+   * Identical front-end transcript as the Karp scenario, but we first
+   * arm a one-shot 503 against fnb_make_reservation(restaurant=madera)
+   * via the admin_inject_chaos tool. Claude hits Madera, gets the 503,
+   * re-plans to Mayfield Bakery, and the spoken confirmation calls out
+   * the failover.
+   */
+  app.post("/api/scenarios/recovery", async (c) => {
+    await deps.pool.resetAll();
+    try {
+      const r = await deps.pool.callTool("admin_inject_chaos", {});
+      if (!r.ok) {
+        return c.json({ error: `chaos injection failed: ${r.text}` }, 500);
+      }
+    } catch (err) {
+      return c.json({ error: `chaos injection threw: ${(err as Error).message}` }, 500);
+    }
+    const turnId = newTurnId();
+    void (async () => {
+      try {
+        await deps.loop.runTurn({ turnId, transcript: KARP_SCENARIO, sourceTag: "demo", onTrace: broadcast });
+      } catch (err) {
+        broadcast({ type: "turn_error", turnId, message: (err as Error).message, ts: new Date().toISOString() });
+      }
+    })();
+    return c.json({ ok: true, turnId, scenario: "recovery" });
+  });
+
   app.post("/webhook/elevenlabs", async (c) => handleElevenLabsCustomLlm(c, deps.loop, broadcast));
 
   const httpServer = serve({ fetch: app.fetch, port: deps.port }, (info) => {

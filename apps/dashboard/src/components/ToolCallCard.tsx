@@ -55,17 +55,32 @@ export interface ToolCallCardData {
 export function ToolCallCard({ data }: { data: ToolCallCardData }) {
   const title = TOOL_TITLES[data.tool] ?? data.tool;
   const argPreview = previewJson(data.args, 2);
+  const isError = data.status === "error";
 
   return (
     <motion.div
       layout
       layoutId={data.callId}
       initial={{ opacity: 0, y: 12, scale: 0.96 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
+      animate={
+        isError
+          ? { opacity: 1, y: 0, scale: 1, x: [0, -6, 6, -4, 4, 0] }
+          : { opacity: 1, y: 0, scale: 1 }
+      }
       exit={{ opacity: 0, y: -8, scale: 0.97 }}
-      transition={{ type: "spring", stiffness: 320, damping: 26 }}
+      transition={
+        isError
+          ? { duration: 0.45, ease: "easeOut", x: { duration: 0.4 } }
+          : { type: "spring", stiffness: 320, damping: 26 }
+      }
     >
-      <Card className="space-y-2">
+      <Card
+        className={
+          isError
+            ? "space-y-2 border-[color:var(--color-clay)]/55 bg-[color:var(--color-clay)]/8 shadow-[0_0_0_1px_rgba(184,106,74,0.25),0_10px_28px_-12px_rgba(184,106,74,0.40)]"
+            : "space-y-2"
+        }
+      >
         <div className="flex items-center justify-between gap-3">
           <SystemBadge system={data.system} label={SYSTEM_LABELS[data.system]} />
           {data.status === "active" ? (
@@ -77,13 +92,21 @@ export function ToolCallCard({ data }: { data: ToolCallCardData }) {
               ✓ {data.durationMs ?? 0} ms
             </Pill>
           ) : (
-            <Pill variant="error">! {data.durationMs ?? 0} ms</Pill>
+            <Pill variant="error">
+              <span className="font-mono">503</span> · {data.durationMs ?? 0} ms
+            </Pill>
           )}
         </div>
 
         <h3 className="font-display text-lg leading-tight text-[color:var(--color-espresso)]">
           {title}
         </h3>
+
+        {isError && data.resultPreview && (
+          <p className="rounded-md border border-[color:var(--color-clay)]/40 bg-white/70 px-2.5 py-1.5 font-mono text-[10.5px] leading-snug text-[color:var(--color-clay)]">
+            {data.resultPreview.slice(0, 160)}
+          </p>
+        )}
 
         {data.status === "active" && (
           <div className="rounded-md bg-[color:var(--color-alabaster-deep)] px-2.5 py-1.5 font-mono text-[10.5px] italic text-[color:var(--color-stone)]">

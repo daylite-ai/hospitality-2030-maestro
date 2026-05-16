@@ -126,6 +126,12 @@ async function runKarpScenario() {
   return res.json();
 }
 
+async function runRecoveryScenario() {
+  const res = await fetch(`${ORCH}/api/scenarios/recovery`, { method: "POST" });
+  if (!res.ok) throw new Error("Failed to start recovery scenario");
+  return res.json();
+}
+
 export default function App() {
   const { events, connected, reset } = useTraceStream();
   const view = useMemo(() => deriveTurnView(events), [events]);
@@ -166,9 +172,13 @@ export default function App() {
       <Toaster position="top-center" theme="light" toastOptions={{ duration: 3500 }} />
 
       <KarpSecretButton
-        onTrigger={() => {
+        onKarp={() => {
           reset();
           void runKarpScenario().catch((err) => toast.error((err as Error).message));
+        }}
+        onRecovery={() => {
+          reset();
+          void runRecoveryScenario().catch((err) => toast.error((err as Error).message));
         }}
       />
 
