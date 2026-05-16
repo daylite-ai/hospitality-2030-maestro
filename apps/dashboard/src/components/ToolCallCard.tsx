@@ -50,6 +50,9 @@ export interface ToolCallCardData {
   status: "active" | "done" | "error";
   durationMs?: number;
   resultPreview?: string;
+  /** True once a staff_ack arrived for this callId — the floor staff has
+   * physically completed the task on their /operator mobile surface. */
+  acked?: boolean;
 }
 
 export function ToolCallCard({ data }: { data: ToolCallCardData }) {
@@ -78,7 +81,9 @@ export function ToolCallCard({ data }: { data: ToolCallCardData }) {
         className={
           isError
             ? "space-y-2 border-[color:var(--color-clay)]/55 bg-[color:var(--color-clay)]/8 shadow-[0_0_0_1px_rgba(184,106,74,0.25),0_10px_28px_-12px_rgba(184,106,74,0.40)]"
-            : "space-y-2"
+            : data.acked
+              ? "space-y-2 border-[color:var(--color-sage)]/45 bg-[color:var(--color-sage)]/8 shadow-[0_0_0_1px_rgba(131,144,115,0.20),0_10px_28px_-12px_rgba(131,144,115,0.30)]"
+              : "space-y-2"
         }
       >
         <div className="flex items-center justify-between gap-3">
@@ -88,9 +93,11 @@ export function ToolCallCard({ data }: { data: ToolCallCardData }) {
               <Spinner /> live
             </Pill>
           ) : data.status === "done" ? (
-            <Pill variant="success">
-              ✓ {data.durationMs ?? 0} ms
-            </Pill>
+            data.acked ? (
+              <Pill variant="success">✓ acknowledged · floor</Pill>
+            ) : (
+              <Pill variant="success">✓ {data.durationMs ?? 0} ms</Pill>
+            )
           ) : (
             <Pill variant="error">
               <span className="font-mono">503</span> · {data.durationMs ?? 0} ms
