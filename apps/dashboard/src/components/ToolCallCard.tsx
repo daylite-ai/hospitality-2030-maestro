@@ -100,7 +100,9 @@ export function ToolCallCard({ data }: { data: ToolCallCardData }) {
             )
           ) : (
             <Pill variant="error">
-              <span className="font-mono">503</span> · {data.durationMs ?? 0} ms
+              <span className="font-mono">{detectErrorCode(data.resultPreview)}</span>
+              {" · "}
+              {data.durationMs ?? 0} ms
             </Pill>
           )}
         </div>
@@ -139,6 +141,18 @@ export function ToolCallCard({ data }: { data: ToolCallCardData }) {
       </Card>
     </motion.div>
   );
+}
+
+/** Extract a short error code label from the orchestrator's truncated
+ * tool-result text. Falls back to "ERR" when the result doesn't surface
+ * a recognisable HTTP-style or named code. */
+function detectErrorCode(preview: string | undefined): string {
+  if (!preview) return "ERR";
+  const http = preview.match(/\bHTTP\s*(\d{3})\b/i) ?? preview.match(/\b(\d{3})\b/);
+  if (http?.[1]) return http[1];
+  if (/timeout/i.test(preview)) return "TIMEOUT";
+  if (/unreachable|offline|down/i.test(preview)) return "OFFLINE";
+  return "ERR";
 }
 
 function Spinner() {
