@@ -1,0 +1,2961 @@
+{
+  "scenario": "recovery",
+  "events": [
+    {
+      "t_ms": 0,
+      "event": {
+        "type": "turn_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "startedAt": "2026-05-16T20:50:36.748Z",
+        "source": "demo"
+      }
+    },
+    {
+      "t_ms": 0,
+      "event": {
+        "type": "transcript",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "text": "Suite 12 needs a deep clean — the outgoing guests spilled red wine on the rug. David Karp and his family — wife Rachel, two kids — just landed at SFO, about an hour out. And Madera's main dining room is fully booked tonight, but the bar still has space.",
+        "speaker": "staff",
+        "ts": "2026-05-16T20:50:36.748Z"
+      }
+    },
+    {
+      "t_ms": 1792,
+      "event": {
+        "type": "assistant_thought",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "text": "<think>\nNeed to: 1) schedule deep clean for Suite 12, 2) look up Karp gu",
+        "ts": "2026-05-16T20:50:38.540Z"
+      }
+    },
+    {
+      "t_ms": 2252,
+      "event": {
+        "type": "assistant_thought",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "text": "est record to handle arrival & dining, 3) check if Karp was assigned to room",
+        "ts": "2026-05-16T20:50:39.000Z"
+      }
+    },
+    {
+      "t_ms": 2722,
+      "event": {
+        "type": "assistant_thought",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "text": " 12 (likely), reassign if needed, update ETA, book bar, person",
+        "ts": "2026-05-16T20:50:39.470Z"
+      }
+    },
+    {
+      "t_ms": 3294,
+      "event": {
+        "type": "assistant_thought",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "text": "alized amenity.\n\nFirst turn: read-only lookups in parallel. Get guest, get room 12, list available suites.\n</think>",
+        "ts": "2026-05-16T20:50:40.042Z"
+      }
+    },
+    {
+      "t_ms": 3840,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GnGkrEuLBfErduLQEv5eUi",
+        "system": "pms",
+        "tool": "pms_get_guest_by_name",
+        "args": null,
+        "ts": "2026-05-16T20:50:40.588Z"
+      }
+    },
+    {
+      "t_ms": 3840,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GnGkrEuLBfErduLQEv5eUi",
+        "system": "pms",
+        "tool": "pms_get_guest_by_name",
+        "args": "",
+        "ts": "2026-05-16T20:50:40.588Z"
+      }
+    },
+    {
+      "t_ms": 4402,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GnGkrEuLBfErduLQEv5eUi",
+        "system": "pms",
+        "tool": "pms_get_guest_by_name",
+        "args": "{\"name\": \"Da",
+        "ts": "2026-05-16T20:50:41.150Z"
+      }
+    },
+    {
+      "t_ms": 4403,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GnGkrEuLBfErduLQEv5eUi",
+        "system": "pms",
+        "tool": "pms_get_guest_by_name",
+        "args": "{\"name\": \"David Karp",
+        "ts": "2026-05-16T20:50:41.151Z"
+      }
+    },
+    {
+      "t_ms": 4403,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GnGkrEuLBfErduLQEv5eUi",
+        "system": "pms",
+        "tool": "pms_get_guest_by_name",
+        "args": "{\"name\": \"David Karp\"}",
+        "ts": "2026-05-16T20:50:41.151Z"
+      }
+    },
+    {
+      "t_ms": 4404,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01Uyfve44xFLp3HeBE5oYxwQ",
+        "system": "pms",
+        "tool": "pms_get_room",
+        "args": null,
+        "ts": "2026-05-16T20:50:41.152Z"
+      }
+    },
+    {
+      "t_ms": 4412,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01Uyfve44xFLp3HeBE5oYxwQ",
+        "system": "pms",
+        "tool": "pms_get_room",
+        "args": "",
+        "ts": "2026-05-16T20:50:41.160Z"
+      }
+    },
+    {
+      "t_ms": 4953,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01Uyfve44xFLp3HeBE5oYxwQ",
+        "system": "pms",
+        "tool": "pms_get_room",
+        "args": "{\"roomId",
+        "ts": "2026-05-16T20:50:41.701Z"
+      }
+    },
+    {
+      "t_ms": 4954,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01Uyfve44xFLp3HeBE5oYxwQ",
+        "system": "pms",
+        "tool": "pms_get_room",
+        "args": "{\"roomIdOr",
+        "ts": "2026-05-16T20:50:41.702Z"
+      }
+    },
+    {
+      "t_ms": 4954,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01Uyfve44xFLp3HeBE5oYxwQ",
+        "system": "pms",
+        "tool": "pms_get_room",
+        "args": "{\"roomIdOrNumber\": \"12",
+        "ts": "2026-05-16T20:50:41.702Z"
+      }
+    },
+    {
+      "t_ms": 4955,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01Uyfve44xFLp3HeBE5oYxwQ",
+        "system": "pms",
+        "tool": "pms_get_room",
+        "args": "{\"roomIdOrNumber\": \"12\"}",
+        "ts": "2026-05-16T20:50:41.703Z"
+      }
+    },
+    {
+      "t_ms": 4956,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01MSYVxTWXZisAuqfNWdxMHB",
+        "system": "pms",
+        "tool": "pms_list_available_rooms",
+        "args": null,
+        "ts": "2026-05-16T20:50:41.704Z"
+      }
+    },
+    {
+      "t_ms": 4956,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01MSYVxTWXZisAuqfNWdxMHB",
+        "system": "pms",
+        "tool": "pms_list_available_rooms",
+        "args": "",
+        "ts": "2026-05-16T20:50:41.704Z"
+      }
+    },
+    {
+      "t_ms": 4962,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01MSYVxTWXZisAuqfNWdxMHB",
+        "system": "pms",
+        "tool": "pms_list_available_rooms",
+        "args": "{\"t",
+        "ts": "2026-05-16T20:50:41.710Z"
+      }
+    },
+    {
+      "t_ms": 4962,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01MSYVxTWXZisAuqfNWdxMHB",
+        "system": "pms",
+        "tool": "pms_list_available_rooms",
+        "args": "{\"type\": ",
+        "ts": "2026-05-16T20:50:41.710Z"
+      }
+    },
+    {
+      "t_ms": 4963,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01MSYVxTWXZisAuqfNWdxMHB",
+        "system": "pms",
+        "tool": "pms_list_available_rooms",
+        "args": "{\"type\": \"suite\"}",
+        "ts": "2026-05-16T20:50:41.711Z"
+      }
+    },
+    {
+      "t_ms": 4997,
+      "event": {
+        "type": "tool_call_completed",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GnGkrEuLBfErduLQEv5eUi",
+        "system": "pms",
+        "tool": "pms_get_guest_by_name",
+        "durationMs": 10,
+        "result": {
+          "ok": true,
+          "text": "{\n  \"id\": \"g-karp\",\n  \"primaryName\": \"David Karp\",\n  \"party\": [\n    {\n      \"name\": \"David Karp\",\n      \"role\": \"primary\"\n    },\n    {\n      \"name\": \"Rachel Karp\",\n      \"role\": \"partner\"\n    },\n    {\n      \"name\": \"Maya Karp\",\n      \"role\": \"child\",\n      \"age\": 8\n    },\n    {\n      \"name\": \"Noah Karp\",\n      \"role\": \"child\",\n      \"age\": 12\n    }\n  ],\n  \"loyaltyTier\": \"rosewood-elite\",\n  \"arrivalEta\": \"2026-05-16T22:50:35.551Z\",\n  \"preferences\": {\n    \"diet\": \"Rachel is gluten-free; Maya prefers fruit plate over sweets.\",\n    \"sleep\": \"Blackout curtains; family prefers quieter Sand Hill–facing rooms.\",\n    \"interests\": [\n      \"tennis\",\n      \"early breakfast\",\n      \"Stanford campus walk\"\n    ],\n    \"notes\": \"Maya (8) loves anything illustrated with horses; previously delighted by a hand-drawn welcome card.\"\n  },\n  \"history\": {\n    \"stays\": 6,\n    \"lastVisit\": \"2025-12-18\"\n  },\n  \"currentRoomId\": \"r-12\"\n}"
+        },
+        "ts": "2026-05-16T20:50:41.745Z"
+      }
+    },
+    {
+      "t_ms": 4998,
+      "event": {
+        "type": "tool_call_completed",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01Uyfve44xFLp3HeBE5oYxwQ",
+        "system": "pms",
+        "tool": "pms_get_room",
+        "durationMs": 11,
+        "result": {
+          "ok": true,
+          "text": "{\n  \"id\": \"r-12\",\n  \"number\": \"12\",\n  \"type\": \"suite\",\n  \"status\": \"vacant_dirty\",\n  \"assignedGuestId\": \"g-karp\",\n  \"notes\": \"Outgoing guest spilled red wine on rug.\"\n}"
+        },
+        "ts": "2026-05-16T20:50:41.746Z"
+      }
+    },
+    {
+      "t_ms": 4999,
+      "event": {
+        "type": "tool_call_completed",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01MSYVxTWXZisAuqfNWdxMHB",
+        "system": "pms",
+        "tool": "pms_list_available_rooms",
+        "durationMs": 12,
+        "result": {
+          "ok": true,
+          "text": "[\n  {\n    \"id\": \"r-14\",\n    \"number\": \"14\",\n    \"type\": \"suite\",\n    \"status\": \"vacant_clean\",\n    \"assignedGuestId\": null,\n    \"notes\": \"Sand Hill–facing, two bedrooms.\"\n  },\n  {\n    \"id\": \"r-16\",\n    \"number\": \"16\",\n    \"type\": \"suite\",\n    \"status\": \"vacant_clean\",\n    \"assignedGuestId\": null,\n    \"notes\": \"\"\n  }\n]"
+        },
+        "ts": "2026-05-16T20:50:41.747Z"
+      }
+    },
+    {
+      "t_ms": 7985,
+      "event": {
+        "type": "assistant_thought",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "text": "<think",
+        "ts": "2026-05-16T20:50:44.733Z"
+      }
+    },
+    {
+      "t_ms": 8513,
+      "event": {
+        "type": "assistant_thought",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "text": ">\nSuite 14 is Sand Hill–facing and two bedrooms — perfect for the family's",
+        "ts": "2026-05-16T20:50:45.261Z"
+      }
+    },
+    {
+      "t_ms": 9031,
+      "event": {
+        "type": "assistant_thought",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "text": " preferences. Reassign Karps to Suite 14. Schedule deep clean for Suite 12. Update ETA to ~1 hour out (",
+        "ts": "2026-05-16T20:50:45.779Z"
+      }
+    },
+    {
+      "t_ms": 9518,
+      "event": {
+        "type": "assistant_thought",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "text": "now). Book Madera Bar for family of 4. Create amenity ticket with horse-themed card",
+        "ts": "2026-05-16T20:50:46.266Z"
+      }
+    },
+    {
+      "t_ms": 10017,
+      "event": {
+        "type": "assistant_thought",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "text": " for Maya, gluten-free for Rachel, fruit plate.\n\nNeed to check bar availability first? G",
+        "ts": "2026-05-16T20:50:46.765Z"
+      }
+    },
+    {
+      "t_ms": 10515,
+      "event": {
+        "type": "assistant_thought",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "text": "M said bar has space. But I should still check. Actually I can book directly given GM's",
+        "ts": "2026-05-16T20:50:47.263Z"
+      }
+    },
+    {
+      "t_ms": 11014,
+      "event": {
+        "type": "assistant_thought",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "text": " info, but safer to check. Let me parallelize the bar check as read-only, then m",
+        "ts": "2026-05-16T20:50:47.762Z"
+      }
+    },
+    {
+      "t_ms": 11515,
+      "event": {
+        "type": "assistant_thought",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "text": "utate next turn.\n\nActually, I can do mutations now for things not dependent on bar check. Reassign,",
+        "ts": "2026-05-16T20:50:48.263Z"
+      }
+    },
+    {
+      "t_ms": 12015,
+      "event": {
+        "type": "assistant_thought",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "text": " deep clean, ETA, amenity — all independent. Check bar availability in parallel — no wait, that's read-only and the",
+        "ts": "2026-05-16T20:50:48.763Z"
+      }
+    },
+    {
+      "t_ms": 12514,
+      "event": {
+        "type": "assistant_thought",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "text": " booking depends on it. I'll do mutations + bar check now, then book bar next",
+        "ts": "2026-05-16T20:50:49.262Z"
+      }
+    },
+    {
+      "t_ms": 13015,
+      "event": {
+        "type": "assistant_thought",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "text": " turn.\n\nETA \"about an hour out\" from SFO — roughly 45 min drive. Let me set ETA to ",
+        "ts": "2026-05-16T20:50:49.763Z"
+      }
+    },
+    {
+      "t_ms": 13514,
+      "event": {
+        "type": "assistant_thought",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "text": "~1 hour from now. I don't have current time but the arrivalEta already shows 22",
+        "ts": "2026-05-16T20:50:50.262Z"
+      }
+    },
+    {
+      "t_ms": 14015,
+      "event": {
+        "type": "assistant_thought",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "text": ":50 UTC. I'll leave ETA or set fresh. Actually let me just update with a reasonable value. Sk",
+        "ts": "2026-05-16T20:50:50.763Z"
+      }
+    },
+    {
+      "t_ms": 14515,
+      "event": {
+        "type": "assistant_thought",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "text": "ip ETA update — existing one seems fine.\n\nActually re-reading: their current ETA is already set; \"about an hour out\" —",
+        "ts": "2026-05-16T20:50:51.263Z"
+      }
+    },
+    {
+      "t_ms": 15015,
+      "event": {
+        "type": "assistant_thought",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "text": " I should update. But I don't know exact current time. I'll skip the ETA update to avoid fabr",
+        "ts": "2026-05-16T20:50:51.763Z"
+      }
+    },
+    {
+      "t_ms": 15514,
+      "event": {
+        "type": "assistant_thought",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "text": "ication, or use a relative offset. Let me update to give buffer — actually le",
+        "ts": "2026-05-16T20:50:52.262Z"
+      }
+    },
+    {
+      "t_ms": 16014,
+      "event": {
+        "type": "assistant_thought",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "text": "ave it; the existing record probably reflects this already.\n\nDinner time",
+        "ts": "2026-05-16T20:50:52.762Z"
+      }
+    },
+    {
+      "t_ms": 16513,
+      "event": {
+        "type": "assistant_thought",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "text": ": \"tonight\" — typical family with kids, 7pm.",
+        "ts": "2026-05-16T20:50:53.261Z"
+      }
+    },
+    {
+      "t_ms": 17157,
+      "event": {
+        "type": "assistant_thought",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "text": " Check bar at 19:00 for 4.\n</think>",
+        "ts": "2026-05-16T20:50:53.905Z"
+      }
+    },
+    {
+      "t_ms": 17605,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01SUeinn1TBv7sRk671K9p6L",
+        "system": "fnb",
+        "tool": "fnb_check_availability",
+        "args": null,
+        "ts": "2026-05-16T20:50:54.353Z"
+      }
+    },
+    {
+      "t_ms": 17605,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01SUeinn1TBv7sRk671K9p6L",
+        "system": "fnb",
+        "tool": "fnb_check_availability",
+        "args": "",
+        "ts": "2026-05-16T20:50:54.353Z"
+      }
+    },
+    {
+      "t_ms": 18080,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01SUeinn1TBv7sRk671K9p6L",
+        "system": "fnb",
+        "tool": "fnb_check_availability",
+        "args": "{\"restaura",
+        "ts": "2026-05-16T20:50:54.828Z"
+      }
+    },
+    {
+      "t_ms": 18081,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01SUeinn1TBv7sRk671K9p6L",
+        "system": "fnb",
+        "tool": "fnb_check_availability",
+        "args": "{\"restaurantId\":",
+        "ts": "2026-05-16T20:50:54.829Z"
+      }
+    },
+    {
+      "t_ms": 18081,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01SUeinn1TBv7sRk671K9p6L",
+        "system": "fnb",
+        "tool": "fnb_check_availability",
+        "args": "{\"restaurantId\": \"mader",
+        "ts": "2026-05-16T20:50:54.829Z"
+      }
+    },
+    {
+      "t_ms": 18081,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01SUeinn1TBv7sRk671K9p6L",
+        "system": "fnb",
+        "tool": "fnb_check_availability",
+        "args": "{\"restaurantId\": \"madera-bar\"",
+        "ts": "2026-05-16T20:50:54.829Z"
+      }
+    },
+    {
+      "t_ms": 18082,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01SUeinn1TBv7sRk671K9p6L",
+        "system": "fnb",
+        "tool": "fnb_check_availability",
+        "args": "{\"restaurantId\": \"madera-bar\", \"time\": \"1",
+        "ts": "2026-05-16T20:50:54.830Z"
+      }
+    },
+    {
+      "t_ms": 18083,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01SUeinn1TBv7sRk671K9p6L",
+        "system": "fnb",
+        "tool": "fnb_check_availability",
+        "args": "{\"restaurantId\": \"madera-bar\", \"time\": \"19:00",
+        "ts": "2026-05-16T20:50:54.831Z"
+      }
+    },
+    {
+      "t_ms": 18083,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01SUeinn1TBv7sRk671K9p6L",
+        "system": "fnb",
+        "tool": "fnb_check_availability",
+        "args": "{\"restaurantId\": \"madera-bar\", \"time\": \"19:00\"",
+        "ts": "2026-05-16T20:50:54.831Z"
+      }
+    },
+    {
+      "t_ms": 18552,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01SUeinn1TBv7sRk671K9p6L",
+        "system": "fnb",
+        "tool": "fnb_check_availability",
+        "args": "{\"restaurantId\": \"madera-bar\", \"time\": \"19:00\", \"partySize",
+        "ts": "2026-05-16T20:50:55.300Z"
+      }
+    },
+    {
+      "t_ms": 18552,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01SUeinn1TBv7sRk671K9p6L",
+        "system": "fnb",
+        "tool": "fnb_check_availability",
+        "args": "{\"restaurantId\": \"madera-bar\", \"time\": \"19:00\", \"partySize\": 4}",
+        "ts": "2026-05-16T20:50:55.300Z"
+      }
+    },
+    {
+      "t_ms": 18553,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GZZTDBy5oR7mqQ2B8j2Npf",
+        "system": "pms",
+        "tool": "pms_reassign_guest_room",
+        "args": null,
+        "ts": "2026-05-16T20:50:55.301Z"
+      }
+    },
+    {
+      "t_ms": 18553,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GZZTDBy5oR7mqQ2B8j2Npf",
+        "system": "pms",
+        "tool": "pms_reassign_guest_room",
+        "args": "",
+        "ts": "2026-05-16T20:50:55.301Z"
+      }
+    },
+    {
+      "t_ms": 18575,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GZZTDBy5oR7mqQ2B8j2Npf",
+        "system": "pms",
+        "tool": "pms_reassign_guest_room",
+        "args": "{\"guestI",
+        "ts": "2026-05-16T20:50:55.323Z"
+      }
+    },
+    {
+      "t_ms": 18576,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GZZTDBy5oR7mqQ2B8j2Npf",
+        "system": "pms",
+        "tool": "pms_reassign_guest_room",
+        "args": "{\"guestId\": \"g-karp",
+        "ts": "2026-05-16T20:50:55.324Z"
+      }
+    },
+    {
+      "t_ms": 18576,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GZZTDBy5oR7mqQ2B8j2Npf",
+        "system": "pms",
+        "tool": "pms_reassign_guest_room",
+        "args": "{\"guestId\": \"g-karp\"",
+        "ts": "2026-05-16T20:50:55.324Z"
+      }
+    },
+    {
+      "t_ms": 19112,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GZZTDBy5oR7mqQ2B8j2Npf",
+        "system": "pms",
+        "tool": "pms_reassign_guest_room",
+        "args": "{\"guestId\": \"g-karp\", \"n",
+        "ts": "2026-05-16T20:50:55.860Z"
+      }
+    },
+    {
+      "t_ms": 19115,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GZZTDBy5oR7mqQ2B8j2Npf",
+        "system": "pms",
+        "tool": "pms_reassign_guest_room",
+        "args": "{\"guestId\": \"g-karp\", \"newR",
+        "ts": "2026-05-16T20:50:55.863Z"
+      }
+    },
+    {
+      "t_ms": 19116,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GZZTDBy5oR7mqQ2B8j2Npf",
+        "system": "pms",
+        "tool": "pms_reassign_guest_room",
+        "args": "{\"guestId\": \"g-karp\", \"newRoomId\": \"r-1",
+        "ts": "2026-05-16T20:50:55.864Z"
+      }
+    },
+    {
+      "t_ms": 19117,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GZZTDBy5oR7mqQ2B8j2Npf",
+        "system": "pms",
+        "tool": "pms_reassign_guest_room",
+        "args": "{\"guestId\": \"g-karp\", \"newRoomId\": \"r-14\"",
+        "ts": "2026-05-16T20:50:55.865Z"
+      }
+    },
+    {
+      "t_ms": 20097,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GZZTDBy5oR7mqQ2B8j2Npf",
+        "system": "pms",
+        "tool": "pms_reassign_guest_room",
+        "args": "{\"guestId\": \"g-karp\", \"newRoomId\": \"r-14\", \"r",
+        "ts": "2026-05-16T20:50:56.845Z"
+      }
+    },
+    {
+      "t_ms": 20097,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GZZTDBy5oR7mqQ2B8j2Npf",
+        "system": "pms",
+        "tool": "pms_reassign_guest_room",
+        "args": "{\"guestId\": \"g-karp\", \"newRoomId\": \"r-14\", \"reason\"",
+        "ts": "2026-05-16T20:50:56.845Z"
+      }
+    },
+    {
+      "t_ms": 20106,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GZZTDBy5oR7mqQ2B8j2Npf",
+        "system": "pms",
+        "tool": "pms_reassign_guest_room",
+        "args": "{\"guestId\": \"g-karp\", \"newRoomId\": \"r-14\", \"reason\": \"Origina",
+        "ts": "2026-05-16T20:50:56.854Z"
+      }
+    },
+    {
+      "t_ms": 20107,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GZZTDBy5oR7mqQ2B8j2Npf",
+        "system": "pms",
+        "tool": "pms_reassign_guest_room",
+        "args": "{\"guestId\": \"g-karp\", \"newRoomId\": \"r-14\", \"reason\": \"Original Suite 1",
+        "ts": "2026-05-16T20:50:56.855Z"
+      }
+    },
+    {
+      "t_ms": 20108,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GZZTDBy5oR7mqQ2B8j2Npf",
+        "system": "pms",
+        "tool": "pms_reassign_guest_room",
+        "args": "{\"guestId\": \"g-karp\", \"newRoomId\": \"r-14\", \"reason\": \"Original Suite 12 vacant_d",
+        "ts": "2026-05-16T20:50:56.856Z"
+      }
+    },
+    {
+      "t_ms": 20109,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GZZTDBy5oR7mqQ2B8j2Npf",
+        "system": "pms",
+        "tool": "pms_reassign_guest_room",
+        "args": "{\"guestId\": \"g-karp\", \"newRoomId\": \"r-14\", \"reason\": \"Original Suite 12 vacant_dirty (wine ",
+        "ts": "2026-05-16T20:50:56.857Z"
+      }
+    },
+    {
+      "t_ms": 20109,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GZZTDBy5oR7mqQ2B8j2Npf",
+        "system": "pms",
+        "tool": "pms_reassign_guest_room",
+        "args": "{\"guestId\": \"g-karp\", \"newRoomId\": \"r-14\", \"reason\": \"Original Suite 12 vacant_dirty (wine spill, de",
+        "ts": "2026-05-16T20:50:56.857Z"
+      }
+    },
+    {
+      "t_ms": 20110,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GZZTDBy5oR7mqQ2B8j2Npf",
+        "system": "pms",
+        "tool": "pms_reassign_guest_room",
+        "args": "{\"guestId\": \"g-karp\", \"newRoomId\": \"r-14\", \"reason\": \"Original Suite 12 vacant_dirty (wine spill, deep ",
+        "ts": "2026-05-16T20:50:56.858Z"
+      }
+    },
+    {
+      "t_ms": 20110,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GZZTDBy5oR7mqQ2B8j2Npf",
+        "system": "pms",
+        "tool": "pms_reassign_guest_room",
+        "args": "{\"guestId\": \"g-karp\", \"newRoomId\": \"r-14\", \"reason\": \"Original Suite 12 vacant_dirty (wine spill, deep cl",
+        "ts": "2026-05-16T20:50:56.858Z"
+      }
+    },
+    {
+      "t_ms": 20116,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GZZTDBy5oR7mqQ2B8j2Npf",
+        "system": "pms",
+        "tool": "pms_reassign_guest_room",
+        "args": "{\"guestId\": \"g-karp\", \"newRoomId\": \"r-14\", \"reason\": \"Original Suite 12 vacant_dirty (wine spill, deep clean pen",
+        "ts": "2026-05-16T20:50:56.864Z"
+      }
+    },
+    {
+      "t_ms": 20206,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GZZTDBy5oR7mqQ2B8j2Npf",
+        "system": "pms",
+        "tool": "pms_reassign_guest_room",
+        "args": "{\"guestId\": \"g-karp\", \"newRoomId\": \"r-14\", \"reason\": \"Original Suite 12 vacant_dirty (wine spill, deep clean pendin",
+        "ts": "2026-05-16T20:50:56.954Z"
+      }
+    },
+    {
+      "t_ms": 20206,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GZZTDBy5oR7mqQ2B8j2Npf",
+        "system": "pms",
+        "tool": "pms_reassign_guest_room",
+        "args": "{\"guestId\": \"g-karp\", \"newRoomId\": \"r-14\", \"reason\": \"Original Suite 12 vacant_dirty (wine spill, deep clean pending)",
+        "ts": "2026-05-16T20:50:56.954Z"
+      }
+    },
+    {
+      "t_ms": 20207,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GZZTDBy5oR7mqQ2B8j2Npf",
+        "system": "pms",
+        "tool": "pms_reassign_guest_room",
+        "args": "{\"guestId\": \"g-karp\", \"newRoomId\": \"r-14\", \"reason\": \"Original Suite 12 vacant_dirty (wine spill, deep clean pending). Sui",
+        "ts": "2026-05-16T20:50:56.955Z"
+      }
+    },
+    {
+      "t_ms": 20207,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GZZTDBy5oR7mqQ2B8j2Npf",
+        "system": "pms",
+        "tool": "pms_reassign_guest_room",
+        "args": "{\"guestId\": \"g-karp\", \"newRoomId\": \"r-14\", \"reason\": \"Original Suite 12 vacant_dirty (wine spill, deep clean pending). Suite",
+        "ts": "2026-05-16T20:50:56.955Z"
+      }
+    },
+    {
+      "t_ms": 20207,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GZZTDBy5oR7mqQ2B8j2Npf",
+        "system": "pms",
+        "tool": "pms_reassign_guest_room",
+        "args": "{\"guestId\": \"g-karp\", \"newRoomId\": \"r-14\", \"reason\": \"Original Suite 12 vacant_dirty (wine spill, deep clean pending). Suite 14 ",
+        "ts": "2026-05-16T20:50:56.955Z"
+      }
+    },
+    {
+      "t_ms": 20207,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GZZTDBy5oR7mqQ2B8j2Npf",
+        "system": "pms",
+        "tool": "pms_reassign_guest_room",
+        "args": "{\"guestId\": \"g-karp\", \"newRoomId\": \"r-14\", \"reason\": \"Original Suite 12 vacant_dirty (wine spill, deep clean pending). Suite 14 is Sa",
+        "ts": "2026-05-16T20:50:56.955Z"
+      }
+    },
+    {
+      "t_ms": 20207,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GZZTDBy5oR7mqQ2B8j2Npf",
+        "system": "pms",
+        "tool": "pms_reassign_guest_room",
+        "args": "{\"guestId\": \"g-karp\", \"newRoomId\": \"r-14\", \"reason\": \"Original Suite 12 vacant_dirty (wine spill, deep clean pending). Suite 14 is Sand Hil",
+        "ts": "2026-05-16T20:50:56.955Z"
+      }
+    },
+    {
+      "t_ms": 20208,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GZZTDBy5oR7mqQ2B8j2Npf",
+        "system": "pms",
+        "tool": "pms_reassign_guest_room",
+        "args": "{\"guestId\": \"g-karp\", \"newRoomId\": \"r-14\", \"reason\": \"Original Suite 12 vacant_dirty (wine spill, deep clean pending). Suite 14 is Sand Hill–facing a",
+        "ts": "2026-05-16T20:50:56.956Z"
+      }
+    },
+    {
+      "t_ms": 20208,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GZZTDBy5oR7mqQ2B8j2Npf",
+        "system": "pms",
+        "tool": "pms_reassign_guest_room",
+        "args": "{\"guestId\": \"g-karp\", \"newRoomId\": \"r-14\", \"reason\": \"Original Suite 12 vacant_dirty (wine spill, deep clean pending). Suite 14 is Sand Hill–facing and match",
+        "ts": "2026-05-16T20:50:56.956Z"
+      }
+    },
+    {
+      "t_ms": 20208,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GZZTDBy5oR7mqQ2B8j2Npf",
+        "system": "pms",
+        "tool": "pms_reassign_guest_room",
+        "args": "{\"guestId\": \"g-karp\", \"newRoomId\": \"r-14\", \"reason\": \"Original Suite 12 vacant_dirty (wine spill, deep clean pending). Suite 14 is Sand Hill–facing and matches family'",
+        "ts": "2026-05-16T20:50:56.956Z"
+      }
+    },
+    {
+      "t_ms": 20208,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GZZTDBy5oR7mqQ2B8j2Npf",
+        "system": "pms",
+        "tool": "pms_reassign_guest_room",
+        "args": "{\"guestId\": \"g-karp\", \"newRoomId\": \"r-14\", \"reason\": \"Original Suite 12 vacant_dirty (wine spill, deep clean pending). Suite 14 is Sand Hill–facing and matches family's qu",
+        "ts": "2026-05-16T20:50:56.956Z"
+      }
+    },
+    {
+      "t_ms": 20208,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GZZTDBy5oR7mqQ2B8j2Npf",
+        "system": "pms",
+        "tool": "pms_reassign_guest_room",
+        "args": "{\"guestId\": \"g-karp\", \"newRoomId\": \"r-14\", \"reason\": \"Original Suite 12 vacant_dirty (wine spill, deep clean pending). Suite 14 is Sand Hill–facing and matches family's quiet-room p",
+        "ts": "2026-05-16T20:50:56.956Z"
+      }
+    },
+    {
+      "t_ms": 20209,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GZZTDBy5oR7mqQ2B8j2Npf",
+        "system": "pms",
+        "tool": "pms_reassign_guest_room",
+        "args": "{\"guestId\": \"g-karp\", \"newRoomId\": \"r-14\", \"reason\": \"Original Suite 12 vacant_dirty (wine spill, deep clean pending). Suite 14 is Sand Hill–facing and matches family's quiet-room preference",
+        "ts": "2026-05-16T20:50:56.957Z"
+      }
+    },
+    {
+      "t_ms": 20209,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GZZTDBy5oR7mqQ2B8j2Npf",
+        "system": "pms",
+        "tool": "pms_reassign_guest_room",
+        "args": "{\"guestId\": \"g-karp\", \"newRoomId\": \"r-14\", \"reason\": \"Original Suite 12 vacant_dirty (wine spill, deep clean pending). Suite 14 is Sand Hill–facing and matches family's quiet-room preference.\"}",
+        "ts": "2026-05-16T20:50:56.957Z"
+      }
+    },
+    {
+      "t_ms": 20209,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01Y33eSCJVu5V8Ybtka3FmLD",
+        "system": "housekeeping",
+        "tool": "hk_schedule_cleaning",
+        "args": null,
+        "ts": "2026-05-16T20:50:56.957Z"
+      }
+    },
+    {
+      "t_ms": 20209,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01Y33eSCJVu5V8Ybtka3FmLD",
+        "system": "housekeeping",
+        "tool": "hk_schedule_cleaning",
+        "args": "",
+        "ts": "2026-05-16T20:50:56.957Z"
+      }
+    },
+    {
+      "t_ms": 20584,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01Y33eSCJVu5V8Ybtka3FmLD",
+        "system": "housekeeping",
+        "tool": "hk_schedule_cleaning",
+        "args": "{\"ro",
+        "ts": "2026-05-16T20:50:57.332Z"
+      }
+    },
+    {
+      "t_ms": 20585,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01Y33eSCJVu5V8Ybtka3FmLD",
+        "system": "housekeeping",
+        "tool": "hk_schedule_cleaning",
+        "args": "{\"roomId\": \"r-1",
+        "ts": "2026-05-16T20:50:57.333Z"
+      }
+    },
+    {
+      "t_ms": 20585,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01Y33eSCJVu5V8Ybtka3FmLD",
+        "system": "housekeeping",
+        "tool": "hk_schedule_cleaning",
+        "args": "{\"roomId\": \"r-12\"",
+        "ts": "2026-05-16T20:50:57.333Z"
+      }
+    },
+    {
+      "t_ms": 20586,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01Y33eSCJVu5V8Ybtka3FmLD",
+        "system": "housekeeping",
+        "tool": "hk_schedule_cleaning",
+        "args": "{\"roomId\": \"r-12\", \"typ",
+        "ts": "2026-05-16T20:50:57.334Z"
+      }
+    },
+    {
+      "t_ms": 20586,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01Y33eSCJVu5V8Ybtka3FmLD",
+        "system": "housekeeping",
+        "tool": "hk_schedule_cleaning",
+        "args": "{\"roomId\": \"r-12\", \"type\": \"deep_",
+        "ts": "2026-05-16T20:50:57.334Z"
+      }
+    },
+    {
+      "t_ms": 20588,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01Y33eSCJVu5V8Ybtka3FmLD",
+        "system": "housekeeping",
+        "tool": "hk_schedule_cleaning",
+        "args": "{\"roomId\": \"r-12\", \"type\": \"deep_cle",
+        "ts": "2026-05-16T20:50:57.336Z"
+      }
+    },
+    {
+      "t_ms": 20588,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01Y33eSCJVu5V8Ybtka3FmLD",
+        "system": "housekeeping",
+        "tool": "hk_schedule_cleaning",
+        "args": "{\"roomId\": \"r-12\", \"type\": \"deep_clean",
+        "ts": "2026-05-16T20:50:57.336Z"
+      }
+    },
+    {
+      "t_ms": 20588,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01Y33eSCJVu5V8Ybtka3FmLD",
+        "system": "housekeeping",
+        "tool": "hk_schedule_cleaning",
+        "args": "{\"roomId\": \"r-12\", \"type\": \"deep_clean\"",
+        "ts": "2026-05-16T20:50:57.336Z"
+      }
+    },
+    {
+      "t_ms": 20590,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01Y33eSCJVu5V8Ybtka3FmLD",
+        "system": "housekeeping",
+        "tool": "hk_schedule_cleaning",
+        "args": "{\"roomId\": \"r-12\", \"type\": \"deep_clean\", \"pr",
+        "ts": "2026-05-16T20:50:57.338Z"
+      }
+    },
+    {
+      "t_ms": 20689,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01Y33eSCJVu5V8Ybtka3FmLD",
+        "system": "housekeeping",
+        "tool": "hk_schedule_cleaning",
+        "args": "{\"roomId\": \"r-12\", \"type\": \"deep_clean\", \"priority\": ",
+        "ts": "2026-05-16T20:50:57.437Z"
+      }
+    },
+    {
+      "t_ms": 20689,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01Y33eSCJVu5V8Ybtka3FmLD",
+        "system": "housekeeping",
+        "tool": "hk_schedule_cleaning",
+        "args": "{\"roomId\": \"r-12\", \"type\": \"deep_clean\", \"priority\": \"ur",
+        "ts": "2026-05-16T20:50:57.437Z"
+      }
+    },
+    {
+      "t_ms": 20690,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01Y33eSCJVu5V8Ybtka3FmLD",
+        "system": "housekeeping",
+        "tool": "hk_schedule_cleaning",
+        "args": "{\"roomId\": \"r-12\", \"type\": \"deep_clean\", \"priority\": \"urgen",
+        "ts": "2026-05-16T20:50:57.438Z"
+      }
+    },
+    {
+      "t_ms": 20690,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01Y33eSCJVu5V8Ybtka3FmLD",
+        "system": "housekeeping",
+        "tool": "hk_schedule_cleaning",
+        "args": "{\"roomId\": \"r-12\", \"type\": \"deep_clean\", \"priority\": \"urgent\"",
+        "ts": "2026-05-16T20:50:57.438Z"
+      }
+    },
+    {
+      "t_ms": 21077,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01Y33eSCJVu5V8Ybtka3FmLD",
+        "system": "housekeeping",
+        "tool": "hk_schedule_cleaning",
+        "args": "{\"roomId\": \"r-12\", \"type\": \"deep_clean\", \"priority\": \"urgent\", ",
+        "ts": "2026-05-16T20:50:57.825Z"
+      }
+    },
+    {
+      "t_ms": 21077,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01Y33eSCJVu5V8Ybtka3FmLD",
+        "system": "housekeeping",
+        "tool": "hk_schedule_cleaning",
+        "args": "{\"roomId\": \"r-12\", \"type\": \"deep_clean\", \"priority\": \"urgent\", \"note",
+        "ts": "2026-05-16T20:50:57.825Z"
+      }
+    },
+    {
+      "t_ms": 21082,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01Y33eSCJVu5V8Ybtka3FmLD",
+        "system": "housekeeping",
+        "tool": "hk_schedule_cleaning",
+        "args": "{\"roomId\": \"r-12\", \"type\": \"deep_clean\", \"priority\": \"urgent\", \"notes\": \"Red wi",
+        "ts": "2026-05-16T20:50:57.830Z"
+      }
+    },
+    {
+      "t_ms": 21083,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01Y33eSCJVu5V8Ybtka3FmLD",
+        "system": "housekeeping",
+        "tool": "hk_schedule_cleaning",
+        "args": "{\"roomId\": \"r-12\", \"type\": \"deep_clean\", \"priority\": \"urgent\", \"notes\": \"Red wine spill o",
+        "ts": "2026-05-16T20:50:57.831Z"
+      }
+    },
+    {
+      "t_ms": 21083,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01Y33eSCJVu5V8Ybtka3FmLD",
+        "system": "housekeeping",
+        "tool": "hk_schedule_cleaning",
+        "args": "{\"roomId\": \"r-12\", \"type\": \"deep_clean\", \"priority\": \"urgent\", \"notes\": \"Red wine spill on ru",
+        "ts": "2026-05-16T20:50:57.831Z"
+      }
+    },
+    {
+      "t_ms": 21098,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01Y33eSCJVu5V8Ybtka3FmLD",
+        "system": "housekeeping",
+        "tool": "hk_schedule_cleaning",
+        "args": "{\"roomId\": \"r-12\", \"type\": \"deep_clean\", \"priority\": \"urgent\", \"notes\": \"Red wine spill on rug from out",
+        "ts": "2026-05-16T20:50:57.846Z"
+      }
+    },
+    {
+      "t_ms": 21098,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01Y33eSCJVu5V8Ybtka3FmLD",
+        "system": "housekeeping",
+        "tool": "hk_schedule_cleaning",
+        "args": "{\"roomId\": \"r-12\", \"type\": \"deep_clean\", \"priority\": \"urgent\", \"notes\": \"Red wine spill on rug from outgoing g",
+        "ts": "2026-05-16T20:50:57.846Z"
+      }
+    },
+    {
+      "t_ms": 21099,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01Y33eSCJVu5V8Ybtka3FmLD",
+        "system": "housekeeping",
+        "tool": "hk_schedule_cleaning",
+        "args": "{\"roomId\": \"r-12\", \"type\": \"deep_clean\", \"priority\": \"urgent\", \"notes\": \"Red wine spill on rug from outgoing guest. ",
+        "ts": "2026-05-16T20:50:57.847Z"
+      }
+    },
+    {
+      "t_ms": 21099,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01Y33eSCJVu5V8Ybtka3FmLD",
+        "system": "housekeeping",
+        "tool": "hk_schedule_cleaning",
+        "args": "{\"roomId\": \"r-12\", \"type\": \"deep_clean\", \"priority\": \"urgent\", \"notes\": \"Red wine spill on rug from outgoing guest. Extra time ",
+        "ts": "2026-05-16T20:50:57.847Z"
+      }
+    },
+    {
+      "t_ms": 21101,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01Y33eSCJVu5V8Ybtka3FmLD",
+        "system": "housekeeping",
+        "tool": "hk_schedule_cleaning",
+        "args": "{\"roomId\": \"r-12\", \"type\": \"deep_clean\", \"priority\": \"urgent\", \"notes\": \"Red wine spill on rug from outgoing guest. Extra time for rug tre",
+        "ts": "2026-05-16T20:50:57.849Z"
+      }
+    },
+    {
+      "t_ms": 21101,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01Y33eSCJVu5V8Ybtka3FmLD",
+        "system": "housekeeping",
+        "tool": "hk_schedule_cleaning",
+        "args": "{\"roomId\": \"r-12\", \"type\": \"deep_clean\", \"priority\": \"urgent\", \"notes\": \"Red wine spill on rug from outgoing guest. Extra time for rug treatment.",
+        "ts": "2026-05-16T20:50:57.849Z"
+      }
+    },
+    {
+      "t_ms": 21101,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01Y33eSCJVu5V8Ybtka3FmLD",
+        "system": "housekeeping",
+        "tool": "hk_schedule_cleaning",
+        "args": "{\"roomId\": \"r-12\", \"type\": \"deep_clean\", \"priority\": \"urgent\", \"notes\": \"Red wine spill on rug from outgoing guest. Extra time for rug treatment.\"}",
+        "ts": "2026-05-16T20:50:57.849Z"
+      }
+    },
+    {
+      "t_ms": 21102,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": null,
+        "ts": "2026-05-16T20:50:57.850Z"
+      }
+    },
+    {
+      "t_ms": 21104,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "",
+        "ts": "2026-05-16T20:50:57.852Z"
+      }
+    },
+    {
+      "t_ms": 21584,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"ro",
+        "ts": "2026-05-16T20:50:58.332Z"
+      }
+    },
+    {
+      "t_ms": 21584,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\":",
+        "ts": "2026-05-16T20:50:58.332Z"
+      }
+    },
+    {
+      "t_ms": 21584,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-1",
+        "ts": "2026-05-16T20:50:58.332Z"
+      }
+    },
+    {
+      "t_ms": 21584,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\"",
+        "ts": "2026-05-16T20:50:58.332Z"
+      }
+    },
+    {
+      "t_ms": 22084,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guest",
+        "ts": "2026-05-16T20:50:58.832Z"
+      }
+    },
+    {
+      "t_ms": 22084,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-k",
+        "ts": "2026-05-16T20:50:58.832Z"
+      }
+    },
+    {
+      "t_ms": 22085,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\"",
+        "ts": "2026-05-16T20:50:58.833Z"
+      }
+    },
+    {
+      "t_ms": 23084,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", ",
+        "ts": "2026-05-16T20:50:59.832Z"
+      }
+    },
+    {
+      "t_ms": 23084,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"ite",
+        "ts": "2026-05-16T20:50:59.832Z"
+      }
+    },
+    {
+      "t_ms": 23085,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [",
+        "ts": "2026-05-16T20:50:59.833Z"
+      }
+    },
+    {
+      "t_ms": 23085,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand",
+        "ts": "2026-05-16T20:50:59.833Z"
+      }
+    },
+    {
+      "t_ms": 23086,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn we",
+        "ts": "2026-05-16T20:50:59.834Z"
+      }
+    },
+    {
+      "t_ms": 23086,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welco",
+        "ts": "2026-05-16T20:50:59.834Z"
+      }
+    },
+    {
+      "t_ms": 23087,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card",
+        "ts": "2026-05-16T20:50:59.835Z"
+      }
+    },
+    {
+      "t_ms": 23087,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse ",
+        "ts": "2026-05-16T20:50:59.835Z"
+      }
+    },
+    {
+      "t_ms": 23087,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustr",
+        "ts": "2026-05-16T20:50:59.835Z"
+      }
+    },
+    {
+      "t_ms": 23136,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for M",
+        "ts": "2026-05-16T20:50:59.884Z"
+      }
+    },
+    {
+      "t_ms": 23137,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",",
+        "ts": "2026-05-16T20:50:59.885Z"
+      }
+    },
+    {
+      "t_ms": 23137,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh f",
+        "ts": "2026-05-16T20:50:59.885Z"
+      }
+    },
+    {
+      "t_ms": 23137,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit ",
+        "ts": "2026-05-16T20:50:59.885Z"
+      }
+    },
+    {
+      "t_ms": 23137,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit pl",
+        "ts": "2026-05-16T20:50:59.885Z"
+      }
+    },
+    {
+      "t_ms": 23138,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate",
+        "ts": "2026-05-16T20:50:59.886Z"
+      }
+    },
+    {
+      "t_ms": 23138,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (M",
+        "ts": "2026-05-16T20:50:59.886Z"
+      }
+    },
+    {
+      "t_ms": 23138,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya ",
+        "ts": "2026-05-16T20:50:59.886Z"
+      }
+    },
+    {
+      "t_ms": 23138,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers",
+        "ts": "2026-05-16T20:50:59.886Z"
+      }
+    },
+    {
+      "t_ms": 23138,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit",
+        "ts": "2026-05-16T20:50:59.886Z"
+      }
+    },
+    {
+      "t_ms": 23139,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over s",
+        "ts": "2026-05-16T20:50:59.887Z"
+      }
+    },
+    {
+      "t_ms": 23139,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"G",
+        "ts": "2026-05-16T20:50:59.887Z"
+      }
+    },
+    {
+      "t_ms": 23139,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten",
+        "ts": "2026-05-16T20:50:59.887Z"
+      }
+    },
+    {
+      "t_ms": 23139,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free sna",
+        "ts": "2026-05-16T20:50:59.887Z"
+      }
+    },
+    {
+      "t_ms": 23139,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selectio",
+        "ts": "2026-05-16T20:50:59.887Z"
+      }
+    },
+    {
+      "t_ms": 23139,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Ra",
+        "ts": "2026-05-16T20:50:59.887Z"
+      }
+    },
+    {
+      "t_ms": 23140,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"S",
+        "ts": "2026-05-16T20:50:59.888Z"
+      }
+    },
+    {
+      "t_ms": 23140,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparklin",
+        "ts": "2026-05-16T20:50:59.888Z"
+      }
+    },
+    {
+      "t_ms": 23140,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling wat",
+        "ts": "2026-05-16T20:50:59.888Z"
+      }
+    },
+    {
+      "t_ms": 23140,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water ",
+        "ts": "2026-05-16T20:50:59.888Z"
+      }
+    },
+    {
+      "t_ms": 23140,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and loc",
+        "ts": "2026-05-16T20:50:59.888Z"
+      }
+    },
+    {
+      "t_ms": 23141,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almo",
+        "ts": "2026-05-16T20:50:59.889Z"
+      }
+    },
+    {
+      "t_ms": 23141,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds",
+        "ts": "2026-05-16T20:50:59.889Z"
+      }
+    },
+    {
+      "t_ms": 23142,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"]",
+        "ts": "2026-05-16T20:50:59.890Z"
+      }
+    },
+    {
+      "t_ms": 25135,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], ",
+        "ts": "2026-05-16T20:51:01.883Z"
+      }
+    },
+    {
+      "t_ms": 25135,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"",
+        "ts": "2026-05-16T20:51:01.883Z"
+      }
+    },
+    {
+      "t_ms": 25136,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Retu",
+        "ts": "2026-05-16T20:51:01.884Z"
+      }
+    },
+    {
+      "t_ms": 25136,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Ros",
+        "ts": "2026-05-16T20:51:01.884Z"
+      }
+    },
+    {
+      "t_ms": 25138,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewoo",
+        "ts": "2026-05-16T20:51:01.886Z"
+      }
+    },
+    {
+      "t_ms": 25138,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite fami",
+        "ts": "2026-05-16T20:51:01.886Z"
+      }
+    },
+    {
+      "t_ms": 25138,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite family (",
+        "ts": "2026-05-16T20:51:01.886Z"
+      }
+    },
+    {
+      "t_ms": 25140,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite family (7th st",
+        "ts": "2026-05-16T20:51:01.888Z"
+      }
+    },
+    {
+      "t_ms": 25142,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite family (7th stay",
+        "ts": "2026-05-16T20:51:01.890Z"
+      }
+    },
+    {
+      "t_ms": 25142,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite family (7th stay). M",
+        "ts": "2026-05-16T20:51:01.890Z"
+      }
+    },
+    {
+      "t_ms": 25142,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite family (7th stay). Maya, 8, love",
+        "ts": "2026-05-16T20:51:01.890Z"
+      }
+    },
+    {
+      "t_ms": 25246,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite family (7th stay). Maya, 8, loves horse ",
+        "ts": "2026-05-16T20:51:01.994Z"
+      }
+    },
+    {
+      "t_ms": 25246,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite family (7th stay). Maya, 8, loves horse illustr",
+        "ts": "2026-05-16T20:51:01.994Z"
+      }
+    },
+    {
+      "t_ms": 25247,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite family (7th stay). Maya, 8, loves horse illustrati",
+        "ts": "2026-05-16T20:51:01.995Z"
+      }
+    },
+    {
+      "t_ms": 25247,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite family (7th stay). Maya, 8, loves horse illustration",
+        "ts": "2026-05-16T20:51:01.995Z"
+      }
+    },
+    {
+      "t_ms": 25247,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite family (7th stay). Maya, 8, loves horse illustrations — last ",
+        "ts": "2026-05-16T20:51:01.995Z"
+      }
+    },
+    {
+      "t_ms": 25247,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite family (7th stay). Maya, 8, loves horse illustrations — last visit she wa",
+        "ts": "2026-05-16T20:51:01.995Z"
+      }
+    },
+    {
+      "t_ms": 25248,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite family (7th stay). Maya, 8, loves horse illustrations — last visit she was deligh",
+        "ts": "2026-05-16T20:51:01.996Z"
+      }
+    },
+    {
+      "t_ms": 25248,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite family (7th stay). Maya, 8, loves horse illustrations — last visit she was delighted by a",
+        "ts": "2026-05-16T20:51:01.996Z"
+      }
+    },
+    {
+      "t_ms": 25248,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite family (7th stay). Maya, 8, loves horse illustrations — last visit she was delighted by a hand",
+        "ts": "2026-05-16T20:51:01.996Z"
+      }
+    },
+    {
+      "t_ms": 25248,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite family (7th stay). Maya, 8, loves horse illustrations — last visit she was delighted by a hand-draw",
+        "ts": "2026-05-16T20:51:01.996Z"
+      }
+    },
+    {
+      "t_ms": 25249,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite family (7th stay). Maya, 8, loves horse illustrations — last visit she was delighted by a hand-drawn we",
+        "ts": "2026-05-16T20:51:01.997Z"
+      }
+    },
+    {
+      "t_ms": 25249,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite family (7th stay). Maya, 8, loves horse illustrations — last visit she was delighted by a hand-drawn welcome c",
+        "ts": "2026-05-16T20:51:01.997Z"
+      }
+    },
+    {
+      "t_ms": 25249,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite family (7th stay). Maya, 8, loves horse illustrations — last visit she was delighted by a hand-drawn welcome card, pleas",
+        "ts": "2026-05-16T20:51:01.997Z"
+      }
+    },
+    {
+      "t_ms": 25250,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite family (7th stay). Maya, 8, loves horse illustrations — last visit she was delighted by a hand-drawn welcome card, please repeat t",
+        "ts": "2026-05-16T20:51:01.998Z"
+      }
+    },
+    {
+      "t_ms": 25250,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite family (7th stay). Maya, 8, loves horse illustrations — last visit she was delighted by a hand-drawn welcome card, please repeat that touch",
+        "ts": "2026-05-16T20:51:01.998Z"
+      }
+    },
+    {
+      "t_ms": 25251,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite family (7th stay). Maya, 8, loves horse illustrations — last visit she was delighted by a hand-drawn welcome card, please repeat that touch. R",
+        "ts": "2026-05-16T20:51:01.999Z"
+      }
+    },
+    {
+      "t_ms": 25251,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite family (7th stay). Maya, 8, loves horse illustrations — last visit she was delighted by a hand-drawn welcome card, please repeat that touch. Rache",
+        "ts": "2026-05-16T20:51:01.999Z"
+      }
+    },
+    {
+      "t_ms": 25251,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite family (7th stay). Maya, 8, loves horse illustrations — last visit she was delighted by a hand-drawn welcome card, please repeat that touch. Rachel is str",
+        "ts": "2026-05-16T20:51:01.999Z"
+      }
+    },
+    {
+      "t_ms": 25251,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite family (7th stay). Maya, 8, loves horse illustrations — last visit she was delighted by a hand-drawn welcome card, please repeat that touch. Rachel is strictly g",
+        "ts": "2026-05-16T20:51:01.999Z"
+      }
+    },
+    {
+      "t_ms": 25252,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite family (7th stay). Maya, 8, loves horse illustrations — last visit she was delighted by a hand-drawn welcome card, please repeat that touch. Rachel is strictly gluten-",
+        "ts": "2026-05-16T20:51:02.000Z"
+      }
+    },
+    {
+      "t_ms": 25252,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite family (7th stay). Maya, 8, loves horse illustrations — last visit she was delighted by a hand-drawn welcome card, please repeat that touch. Rachel is strictly gluten-free; ensu",
+        "ts": "2026-05-16T20:51:02.000Z"
+      }
+    },
+    {
+      "t_ms": 25252,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite family (7th stay). Maya, 8, loves horse illustrations — last visit she was delighted by a hand-drawn welcome card, please repeat that touch. Rachel is strictly gluten-free; ensure snack pla",
+        "ts": "2026-05-16T20:51:02.000Z"
+      }
+    },
+    {
+      "t_ms": 25252,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite family (7th stay). Maya, 8, loves horse illustrations — last visit she was delighted by a hand-drawn welcome card, please repeat that touch. Rachel is strictly gluten-free; ensure snack plate",
+        "ts": "2026-05-16T20:51:02.000Z"
+      }
+    },
+    {
+      "t_ms": 25253,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite family (7th stay). Maya, 8, loves horse illustrations — last visit she was delighted by a hand-drawn welcome card, please repeat that touch. Rachel is strictly gluten-free; ensure snack plate is cle",
+        "ts": "2026-05-16T20:51:02.001Z"
+      }
+    },
+    {
+      "t_ms": 25253,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite family (7th stay). Maya, 8, loves horse illustrations — last visit she was delighted by a hand-drawn welcome card, please repeat that touch. Rachel is strictly gluten-free; ensure snack plate is clearly labelle",
+        "ts": "2026-05-16T20:51:02.001Z"
+      }
+    },
+    {
+      "t_ms": 25253,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite family (7th stay). Maya, 8, loves horse illustrations — last visit she was delighted by a hand-drawn welcome card, please repeat that touch. Rachel is strictly gluten-free; ensure snack plate is clearly labelled GF. Family",
+        "ts": "2026-05-16T20:51:02.001Z"
+      }
+    },
+    {
+      "t_ms": 25253,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite family (7th stay). Maya, 8, loves horse illustrations — last visit she was delighted by a hand-drawn welcome card, please repeat that touch. Rachel is strictly gluten-free; ensure snack plate is clearly labelled GF. Family lan",
+        "ts": "2026-05-16T20:51:02.001Z"
+      }
+    },
+    {
+      "t_ms": 25254,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite family (7th stay). Maya, 8, loves horse illustrations — last visit she was delighted by a hand-drawn welcome card, please repeat that touch. Rachel is strictly gluten-free; ensure snack plate is clearly labelled GF. Family lands fro",
+        "ts": "2026-05-16T20:51:02.002Z"
+      }
+    },
+    {
+      "t_ms": 25254,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite family (7th stay). Maya, 8, loves horse illustrations — last visit she was delighted by a hand-drawn welcome card, please repeat that touch. Rachel is strictly gluten-free; ensure snack plate is clearly labelled GF. Family lands from SFO in ~1h",
+        "ts": "2026-05-16T20:51:02.002Z"
+      }
+    },
+    {
+      "t_ms": 25255,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite family (7th stay). Maya, 8, loves horse illustrations — last visit she was delighted by a hand-drawn welcome card, please repeat that touch. Rachel is strictly gluten-free; ensure snack plate is clearly labelled GF. Family lands from SFO in ~1hr, place be",
+        "ts": "2026-05-16T20:51:02.003Z"
+      }
+    },
+    {
+      "t_ms": 25255,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite family (7th stay). Maya, 8, loves horse illustrations — last visit she was delighted by a hand-drawn welcome card, please repeat that touch. Rachel is strictly gluten-free; ensure snack plate is clearly labelled GF. Family lands from SFO in ~1hr, place before arriv",
+        "ts": "2026-05-16T20:51:02.003Z"
+      }
+    },
+    {
+      "t_ms": 25255,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "args": "{\"roomId\": \"r-14\", \"guestId\": \"g-karp\", \"items\": [\"Hand-drawn welcome card with horse illustration for Maya (8)\",\"Fresh fruit plate (Maya prefers fruit over sweets)\",\"Gluten-free snack selection for Rachel\",\"Sparkling water and local almonds\"], \"note\": \"Returning Rosewood Elite family (7th stay). Maya, 8, loves horse illustrations — last visit she was delighted by a hand-drawn welcome card, please repeat that touch. Rachel is strictly gluten-free; ensure snack plate is clearly labelled GF. Family lands from SFO in ~1hr, place before arrival.\"}",
+        "ts": "2026-05-16T20:51:02.003Z"
+      }
+    },
+    {
+      "t_ms": 25259,
+      "event": {
+        "type": "tool_call_completed",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01SUeinn1TBv7sRk671K9p6L",
+        "system": "fnb",
+        "tool": "fnb_check_availability",
+        "durationMs": 3,
+        "result": {
+          "ok": true,
+          "text": "Available at 19:00 for 4."
+        },
+        "ts": "2026-05-16T20:51:02.007Z"
+      }
+    },
+    {
+      "t_ms": 25262,
+      "event": {
+        "type": "tool_call_completed",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01GZZTDBy5oR7mqQ2B8j2Npf",
+        "system": "pms",
+        "tool": "pms_reassign_guest_room",
+        "durationMs": 3,
+        "result": {
+          "ok": true,
+          "text": "Reassigned David Karp from room 12 to 14."
+        },
+        "ts": "2026-05-16T20:51:02.010Z"
+      }
+    },
+    {
+      "t_ms": 25270,
+      "event": {
+        "type": "tool_call_completed",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01Y33eSCJVu5V8Ybtka3FmLD",
+        "system": "housekeeping",
+        "tool": "hk_schedule_cleaning",
+        "durationMs": 8,
+        "result": {
+          "ok": true,
+          "text": "Task hk-101: deep_clean for room scheduled (urgent, asap)"
+        },
+        "ts": "2026-05-16T20:51:02.018Z"
+      }
+    },
+    {
+      "t_ms": 25273,
+      "event": {
+        "type": "tool_call_completed",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01G7i87G485Z9T2UYUVmEFxr",
+        "system": "housekeeping",
+        "tool": "hk_create_amenity_ticket",
+        "durationMs": 3,
+        "result": {
+          "ok": true,
+          "text": "Amenity ticket am-201 queued."
+        },
+        "ts": "2026-05-16T20:51:02.021Z"
+      }
+    },
+    {
+      "t_ms": 27008,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": null,
+        "ts": "2026-05-16T20:51:03.756Z"
+      }
+    },
+    {
+      "t_ms": 27008,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "",
+        "ts": "2026-05-16T20:51:03.756Z"
+      }
+    },
+    {
+      "t_ms": 27052,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"re",
+        "ts": "2026-05-16T20:51:03.800Z"
+      }
+    },
+    {
+      "t_ms": 27053,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\":",
+        "ts": "2026-05-16T20:51:03.801Z"
+      }
+    },
+    {
+      "t_ms": 27054,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\": \"mader",
+        "ts": "2026-05-16T20:51:03.802Z"
+      }
+    },
+    {
+      "t_ms": 27054,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\": \"madera-ba",
+        "ts": "2026-05-16T20:51:03.802Z"
+      }
+    },
+    {
+      "t_ms": 27055,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\": \"madera-bar\"",
+        "ts": "2026-05-16T20:51:03.803Z"
+      }
+    },
+    {
+      "t_ms": 27505,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\": \"madera-bar\", \"gue",
+        "ts": "2026-05-16T20:51:04.253Z"
+      }
+    },
+    {
+      "t_ms": 27505,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\": \"madera-bar\", \"guestId",
+        "ts": "2026-05-16T20:51:04.253Z"
+      }
+    },
+    {
+      "t_ms": 27505,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\": \"madera-bar\", \"guestId\": \"g-karp\"",
+        "ts": "2026-05-16T20:51:04.253Z"
+      }
+    },
+    {
+      "t_ms": 27506,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\": \"madera-bar\", \"guestId\": \"g-karp\", \"time\"",
+        "ts": "2026-05-16T20:51:04.254Z"
+      }
+    },
+    {
+      "t_ms": 27507,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\": \"madera-bar\", \"guestId\": \"g-karp\", \"time\": \"1",
+        "ts": "2026-05-16T20:51:04.255Z"
+      }
+    },
+    {
+      "t_ms": 27507,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\": \"madera-bar\", \"guestId\": \"g-karp\", \"time\": \"19:00\"",
+        "ts": "2026-05-16T20:51:04.255Z"
+      }
+    },
+    {
+      "t_ms": 28043,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\": \"madera-bar\", \"guestId\": \"g-karp\", \"time\": \"19:00\", \"partyS",
+        "ts": "2026-05-16T20:51:04.791Z"
+      }
+    },
+    {
+      "t_ms": 28045,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\": \"madera-bar\", \"guestId\": \"g-karp\", \"time\": \"19:00\", \"partySize\": 4",
+        "ts": "2026-05-16T20:51:04.793Z"
+      }
+    },
+    {
+      "t_ms": 28675,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\": \"madera-bar\", \"guestId\": \"g-karp\", \"time\": \"19:00\", \"partySize\": 4, \"note",
+        "ts": "2026-05-16T20:51:05.423Z"
+      }
+    },
+    {
+      "t_ms": 28676,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\": \"madera-bar\", \"guestId\": \"g-karp\", \"time\": \"19:00\", \"partySize\": 4, \"notes\":",
+        "ts": "2026-05-16T20:51:05.424Z"
+      }
+    },
+    {
+      "t_ms": 28677,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\": \"madera-bar\", \"guestId\": \"g-karp\", \"time\": \"19:00\", \"partySize\": 4, \"notes\": \"Ros",
+        "ts": "2026-05-16T20:51:05.425Z"
+      }
+    },
+    {
+      "t_ms": 28677,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\": \"madera-bar\", \"guestId\": \"g-karp\", \"time\": \"19:00\", \"partySize\": 4, \"notes\": \"Rosewood ",
+        "ts": "2026-05-16T20:51:05.425Z"
+      }
+    },
+    {
+      "t_ms": 28678,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\": \"madera-bar\", \"guestId\": \"g-karp\", \"time\": \"19:00\", \"partySize\": 4, \"notes\": \"Rosewood Elite",
+        "ts": "2026-05-16T20:51:05.426Z"
+      }
+    },
+    {
+      "t_ms": 28679,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\": \"madera-bar\", \"guestId\": \"g-karp\", \"time\": \"19:00\", \"partySize\": 4, \"notes\": \"Rosewood Elite family ",
+        "ts": "2026-05-16T20:51:05.427Z"
+      }
+    },
+    {
+      "t_ms": 28681,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\": \"madera-bar\", \"guestId\": \"g-karp\", \"time\": \"19:00\", \"partySize\": 4, \"notes\": \"Rosewood Elite family with two",
+        "ts": "2026-05-16T20:51:05.429Z"
+      }
+    },
+    {
+      "t_ms": 28681,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\": \"madera-bar\", \"guestId\": \"g-karp\", \"time\": \"19:00\", \"partySize\": 4, \"notes\": \"Rosewood Elite family with two children (",
+        "ts": "2026-05-16T20:51:05.429Z"
+      }
+    },
+    {
+      "t_ms": 28683,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\": \"madera-bar\", \"guestId\": \"g-karp\", \"time\": \"19:00\", \"partySize\": 4, \"notes\": \"Rosewood Elite family with two children (12, 8). Rac",
+        "ts": "2026-05-16T20:51:05.431Z"
+      }
+    },
+    {
+      "t_ms": 28683,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\": \"madera-bar\", \"guestId\": \"g-karp\", \"time\": \"19:00\", \"partySize\": 4, \"notes\": \"Rosewood Elite family with two children (12, 8). Rachel i",
+        "ts": "2026-05-16T20:51:05.431Z"
+      }
+    },
+    {
+      "t_ms": 28683,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\": \"madera-bar\", \"guestId\": \"g-karp\", \"time\": \"19:00\", \"partySize\": 4, \"notes\": \"Rosewood Elite family with two children (12, 8). Rachel is ",
+        "ts": "2026-05-16T20:51:05.431Z"
+      }
+    },
+    {
+      "t_ms": 28755,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\": \"madera-bar\", \"guestId\": \"g-karp\", \"time\": \"19:00\", \"partySize\": 4, \"notes\": \"Rosewood Elite family with two children (12, 8). Rachel is gluten-free ",
+        "ts": "2026-05-16T20:51:05.503Z"
+      }
+    },
+    {
+      "t_ms": 28755,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\": \"madera-bar\", \"guestId\": \"g-karp\", \"time\": \"19:00\", \"partySize\": 4, \"notes\": \"Rosewood Elite family with two children (12, 8). Rachel is gluten-free — flag kitc",
+        "ts": "2026-05-16T20:51:05.503Z"
+      }
+    },
+    {
+      "t_ms": 28755,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\": \"madera-bar\", \"guestId\": \"g-karp\", \"time\": \"19:00\", \"partySize\": 4, \"notes\": \"Rosewood Elite family with two children (12, 8). Rachel is gluten-free — flag kitchen. Main di",
+        "ts": "2026-05-16T20:51:05.503Z"
+      }
+    },
+    {
+      "t_ms": 28756,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\": \"madera-bar\", \"guestId\": \"g-karp\", \"time\": \"19:00\", \"partySize\": 4, \"notes\": \"Rosewood Elite family with two children (12, 8). Rachel is gluten-free — flag kitchen. Main dinin",
+        "ts": "2026-05-16T20:51:05.504Z"
+      }
+    },
+    {
+      "t_ms": 28756,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\": \"madera-bar\", \"guestId\": \"g-karp\", \"time\": \"19:00\", \"partySize\": 4, \"notes\": \"Rosewood Elite family with two children (12, 8). Rachel is gluten-free — flag kitchen. Main dining was full; ",
+        "ts": "2026-05-16T20:51:05.504Z"
+      }
+    },
+    {
+      "t_ms": 28757,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\": \"madera-bar\", \"guestId\": \"g-karp\", \"time\": \"19:00\", \"partySize\": 4, \"notes\": \"Rosewood Elite family with two children (12, 8). Rachel is gluten-free — flag kitchen. Main dining was full; bar sea",
+        "ts": "2026-05-16T20:51:05.505Z"
+      }
+    },
+    {
+      "t_ms": 28757,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\": \"madera-bar\", \"guestId\": \"g-karp\", \"time\": \"19:00\", \"partySize\": 4, \"notes\": \"Rosewood Elite family with two children (12, 8). Rachel is gluten-free — flag kitchen. Main dining was full; bar seating arrange",
+        "ts": "2026-05-16T20:51:05.505Z"
+      }
+    },
+    {
+      "t_ms": 28757,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\": \"madera-bar\", \"guestId\": \"g-karp\", \"time\": \"19:00\", \"partySize\": 4, \"notes\": \"Rosewood Elite family with two children (12, 8). Rachel is gluten-free — flag kitchen. Main dining was full; bar seating arranged. M",
+        "ts": "2026-05-16T20:51:05.505Z"
+      }
+    },
+    {
+      "t_ms": 28758,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\": \"madera-bar\", \"guestId\": \"g-karp\", \"time\": \"19:00\", \"partySize\": 4, \"notes\": \"Rosewood Elite family with two children (12, 8). Rachel is gluten-free — flag kitchen. Main dining was full; bar seating arranged. Maya p",
+        "ts": "2026-05-16T20:51:05.506Z"
+      }
+    },
+    {
+      "t_ms": 28758,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\": \"madera-bar\", \"guestId\": \"g-karp\", \"time\": \"19:00\", \"partySize\": 4, \"notes\": \"Rosewood Elite family with two children (12, 8). Rachel is gluten-free — flag kitchen. Main dining was full; bar seating arranged. Maya prefer",
+        "ts": "2026-05-16T20:51:05.506Z"
+      }
+    },
+    {
+      "t_ms": 28758,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\": \"madera-bar\", \"guestId\": \"g-karp\", \"time\": \"19:00\", \"partySize\": 4, \"notes\": \"Rosewood Elite family with two children (12, 8). Rachel is gluten-free — flag kitchen. Main dining was full; bar seating arranged. Maya prefers f",
+        "ts": "2026-05-16T20:51:05.506Z"
+      }
+    },
+    {
+      "t_ms": 28759,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\": \"madera-bar\", \"guestId\": \"g-karp\", \"time\": \"19:00\", \"partySize\": 4, \"notes\": \"Rosewood Elite family with two children (12, 8). Rachel is gluten-free — flag kitchen. Main dining was full; bar seating arranged. Maya prefers fruit over ",
+        "ts": "2026-05-16T20:51:05.507Z"
+      }
+    },
+    {
+      "t_ms": 28759,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\": \"madera-bar\", \"guestId\": \"g-karp\", \"time\": \"19:00\", \"partySize\": 4, \"notes\": \"Rosewood Elite family with two children (12, 8). Rachel is gluten-free — flag kitchen. Main dining was full; bar seating arranged. Maya prefers fruit over sweets",
+        "ts": "2026-05-16T20:51:05.507Z"
+      }
+    },
+    {
+      "t_ms": 28759,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\": \"madera-bar\", \"guestId\": \"g-karp\", \"time\": \"19:00\", \"partySize\": 4, \"notes\": \"Rosewood Elite family with two children (12, 8). Rachel is gluten-free — flag kitchen. Main dining was full; bar seating arranged. Maya prefers fruit over sweets for dessert",
+        "ts": "2026-05-16T20:51:05.507Z"
+      }
+    },
+    {
+      "t_ms": 28760,
+      "event": {
+        "type": "tool_call_started",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "args": "{\"restaurantId\": \"madera-bar\", \"guestId\": \"g-karp\", \"time\": \"19:00\", \"partySize\": 4, \"notes\": \"Rosewood Elite family with two children (12, 8). Rachel is gluten-free — flag kitchen. Main dining was full; bar seating arranged. Maya prefers fruit over sweets for dessert.\"}",
+        "ts": "2026-05-16T20:51:05.508Z"
+      }
+    },
+    {
+      "t_ms": 28764,
+      "event": {
+        "type": "tool_call_completed",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "callId": "toolu_01XXCiE6tBZhcR15o6zF1psE",
+        "system": "fnb",
+        "tool": "fnb_make_reservation",
+        "durationMs": 4,
+        "result": {
+          "ok": true,
+          "text": "Reservation res-501 confirmed at 19:00."
+        },
+        "ts": "2026-05-16T20:51:05.512Z"
+      }
+    },
+    {
+      "t_ms": 30208,
+      "event": {
+        "type": "assistant_thought",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "text": "The",
+        "ts": "2026-05-16T20:51:06.956Z"
+      }
+    },
+    {
+      "t_ms": 30744,
+      "event": {
+        "type": "assistant_thought",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "text": " family is moved to Suite 14, twelve is getting a deep clean, hor",
+        "ts": "2026-05-16T20:51:07.492Z"
+      }
+    },
+    {
+      "t_ms": 31243,
+      "event": {
+        "type": "assistant_thought",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "text": "se card and gluten-free amenities are en route, and dinner is set at",
+        "ts": "2026-05-16T20:51:07.991Z"
+      }
+    },
+    {
+      "t_ms": 31418,
+      "event": {
+        "type": "assistant_thought",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "text": " the Madera bar at seven.",
+        "ts": "2026-05-16T20:51:08.166Z"
+      }
+    },
+    {
+      "t_ms": 31450,
+      "event": {
+        "type": "turn_completed",
+        "turnId": "99b2027d-5cd5-48c3-8fa6-8a74505ffa2f",
+        "durationMs": 31450,
+        "spokenResponse": "The family is moved to Suite 14, twelve is getting a deep clean, horse card and gluten-free amenities are en route, and dinner is set at the Madera bar at seven.",
+        "ts": "2026-05-16T20:51:08.198Z"
+      }
+    }
+  ]
+}
