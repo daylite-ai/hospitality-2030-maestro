@@ -253,13 +253,22 @@ export default function App() {
       />
 
       <header className="flex items-baseline justify-between border-b border-[color:var(--color-stone-light)] px-10 py-5">
-        <div>
-          <h1 className="font-display text-[34px] font-medium leading-none text-[color:var(--color-espresso)]">
-            Maestro
-          </h1>
-          <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.32em] text-[color:var(--color-stone)]">
-            Operations copilot · Rosewood Sand Hill
-          </p>
+        <div className="flex items-baseline gap-4">
+          <div>
+            <h1 className="font-display text-[34px] font-medium leading-none text-[color:var(--color-espresso)]">
+              Maestro
+            </h1>
+            <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.32em] text-[color:var(--color-stone)]">
+              Operations copilot · Rosewood Sand Hill
+            </p>
+          </div>
+          <span
+            aria-label="Synthetic data sandbox"
+            className="inline-flex items-center gap-1.5 rounded-full border border-[color:var(--color-gold)]/55 bg-[color:var(--color-gold)]/12 px-2.5 py-1 font-mono text-[9.5px] uppercase tracking-[0.26em] text-[color:var(--color-espresso-soft)]"
+          >
+            <span className="size-1.5 animate-pulse rounded-full bg-[color:var(--color-gold)]" />
+            Synthetic PMS sandbox
+          </span>
         </div>
         <div className="flex items-center gap-6">
           <button

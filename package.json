@@ -10,8 +10,10 @@
   ],
   "scripts": {
     "dev": "tsx watch apps/orchestrator/src/index.ts",
+    "dev:offline": "OFFLINE_MODE=1 tsx watch apps/orchestrator/src/index.ts",
     "dev:dashboard": "npm --workspace @maestro/dashboard run dev",
     "kill-ghosts": "pkill -f 'mcp-servers/.*src/index' || true",
+    "warm-cache": "./scripts/keep-cache-warm.sh",
     "typecheck": "tsc --noEmit -p tsconfig.base.json"
   },
   "devDependencies": {

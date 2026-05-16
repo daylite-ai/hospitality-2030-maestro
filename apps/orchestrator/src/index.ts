@@ -9,16 +9,23 @@
 import { McpClientPool } from "./mcp-clients.ts";
 import { ClaudeLoop } from "./claude-loop.ts";
 import { startServer } from "./server.ts";
+import { OFFLINE_MODE } from "./offline-player.ts";
 
 const PORT = Number(process.env.PORT_ORCHESTRATOR ?? 4000);
 const API_KEY = process.env.ANTHROPIC_API_KEY;
 
-if (!API_KEY) {
+if (OFFLINE_MODE) {
+  process.stderr.write(
+    "[orchestrator] OFFLINE_MODE=1 — replaying fixtures, skipping MCP child spawn and Anthropic calls\n",
+  );
+} else if (!API_KEY) {
   process.stderr.write("[orchestrator] ANTHROPIC_API_KEY is not set — Claude calls will fail\n");
 }
 
 const pool = new McpClientPool();
-await pool.connect();
+if (!OFFLINE_MODE) {
+  await pool.connect();
+}
 
 const loop = new ClaudeLoop(API_KEY ?? "missing", pool);
 const server = startServer({ loop, pool, port: PORT });

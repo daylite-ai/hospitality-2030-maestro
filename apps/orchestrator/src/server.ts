@@ -17,6 +17,7 @@ import type { TraceEvent } from "@maestro/protocol";
 import { ClaudeLoop, InterruptController, newTurnId } from "./claude-loop.ts";
 import { handleElevenLabsCustomLlm } from "./elevenlabs.ts";
 import type { McpClientPool } from "./mcp-clients.ts";
+import { OFFLINE_MODE, replayFixture } from "./offline-player.ts";
 
 export const KARP_SCENARIO = [
   "Suite 12 needs a deep clean — the outgoing guests spilled red wine on the rug.",
@@ -170,6 +171,10 @@ export function startServer(deps: ServerDeps): { close: () => void; broadcast: (
   });
 
   app.post("/api/scenarios/karp", async (c) => {
+    if (OFFLINE_MODE) {
+      replayFixture("karp", broadcast);
+      return c.json({ ok: true, mode: "offline" });
+    }
     await deps.pool.resetAll();
     // Fire-and-forget so the dashboard can begin rendering events while
     // Claude is still streaming. The turnId is broadcast on turn_started.
@@ -204,6 +209,10 @@ export function startServer(deps: ServerDeps): { close: () => void; broadcast: (
    * the failover.
    */
   app.post("/api/scenarios/recovery", async (c) => {
+    if (OFFLINE_MODE) {
+      replayFixture("recovery", broadcast);
+      return c.json({ ok: true, scenario: "recovery", mode: "offline" });
+    }
     await deps.pool.resetAll();
     try {
       const r = await deps.pool.callTool("admin_inject_chaos", {});
@@ -263,6 +272,10 @@ export function startServer(deps: ServerDeps): { close: () => void; broadcast: (
    *      not a staff radio. Claude acts unprompted, voices the GM.
    */
   app.post("/api/scenarios/proactive", async (c) => {
+    if (OFFLINE_MODE) {
+      replayFixture("proactive", broadcast);
+      return c.json({ ok: true, scenario: "proactive", mode: "offline" });
+    }
     await deps.pool.resetAll();
     try {
       const r = await deps.pool.callTool("admin_advance_guest_eta", {
