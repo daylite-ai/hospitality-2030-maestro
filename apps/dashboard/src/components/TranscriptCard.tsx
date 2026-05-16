@@ -4,7 +4,7 @@ import { formatClock } from "@/lib/utils";
 import { QrPanel } from "./QrPanel";
 
 interface Props {
-  transcripts: { text: string; ts: string }[];
+  transcripts: { text: string; ts: string; speaker: "staff" | "gm" }[];
   thinking: string | null;
   spokenResponse: string | null;
   toolCount: number;
@@ -40,20 +40,32 @@ export function TranscriptCard({ transcripts, thinking, spokenResponse, toolCoun
         </div>
       )}
 
-      {transcripts.map((t, i) => (
-        <motion.p
-          key={i}
-          initial={{ opacity: 0, y: 6 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.25 }}
-          className="font-display text-[22px] leading-snug text-[color:var(--color-espresso)]"
-        >
-          <span className="mr-2 font-mono text-[10px] uppercase tracking-wider text-[color:var(--color-stone)]">
-            {formatClock(t.ts)}
-          </span>
-          “{t.text}”
-        </motion.p>
-      ))}
+      {transcripts.map((t, i) => {
+        const isGm = t.speaker === "gm";
+        return (
+          <motion.p
+            key={i}
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.25 }}
+            className={
+              isGm
+                ? "rounded-lg border-l-2 border-[color:var(--color-clay)] bg-[color:var(--color-clay)]/6 px-3 py-1.5 font-display text-[20px] italic leading-snug text-[color:var(--color-clay)]"
+                : "font-display text-[22px] leading-snug text-[color:var(--color-espresso)]"
+            }
+          >
+            <span
+              className={
+                "mr-2 font-mono text-[10px] uppercase tracking-wider " +
+                (isGm ? "text-[color:var(--color-clay)]" : "text-[color:var(--color-stone)]")
+              }
+            >
+              {isGm ? "GM interjects" : formatClock(t.ts)}
+            </span>
+            {isGm ? "" : "“"}{t.text}{isGm ? "" : "”"}
+          </motion.p>
+        );
+      })}
 
       {thinking && (
         <motion.p

@@ -84,12 +84,15 @@ export async function handleElevenLabsCustomLlm(
         }),
       });
 
-      const { spokenResponse } = await loop.runTurn({
+      const r = await loop.runTurn({
         turnId,
         transcript: userText,
         sourceTag: "voice",
         onTrace: broadcast,
       });
+      const spokenResponse = r.interrupted
+        ? "Mid-stream interrupt — the next turn will pick this up."
+        : r.spokenResponse;
 
       // The GM persona prompt guarantees a single ~15-word confirmation,
       // so we don't need server-side sentence-boundary buffering here —
