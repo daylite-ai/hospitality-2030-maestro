@@ -1,0 +1,57 @@
+{
+  "_comment": "60-second submission video TTS script. ElevenLabs voice at 0:00-0:02 hook, founder narrates Karp + sizzle, close on repo URL. Reuses cached voices from script.json.",
+  "voices": {
+    "founder": { "id": "nPczCjzI2devNBz1zQrb", "name": "Brian" },
+    "maestro": { "id": "JBFqnCBsd6RMkjVDRZzb", "name": "George" }
+  },
+  "lines": [
+    {
+      "id": "sub_hook",
+      "voice": "founder",
+      "stability": 0.55,
+      "similarity": 0.85,
+      "style": 0.5,
+      "text": "Hotel operations are broken. Maestro fixes them."
+    },
+    {
+      "id": "sub_intro",
+      "voice": "founder",
+      "stability": 0.55,
+      "similarity": 0.85,
+      "style": 0.4,
+      "text": "I am the General Manager of Rosewood Sand Hill at four p m. Three radio calls just came in. Suite twelve needs a deep clean. The Karp family lands at S F O in one hour. Madera is fully booked."
+    },
+    {
+      "id": "sub_karp_fanout",
+      "voice": "founder",
+      "stability": 0.55,
+      "similarity": 0.85,
+      "style": 0.35,
+      "text": "Maestro is the Invisible Concierge. It reasons across our property management system, housekeeping, food and beverage, and spa. Fourteen MCP tools, parallel reads, serial writes."
+    },
+    {
+      "id": "sub_karp_voice",
+      "voice": "maestro",
+      "stability": 0.65,
+      "similarity": 0.85,
+      "style": 0.3,
+      "text": "Suite fourteen prepped with a horse card for Maya and gluten-free snacks. Madera Bar booked for four, at eight."
+    },
+    {
+      "id": "sub_sizzle",
+      "voice": "founder",
+      "stability": 0.5,
+      "similarity": 0.85,
+      "style": 0.45,
+      "text": "Same morning. Madera's API fails. Maestro autonomously fails over to Mayfield. And before the family even lands, the property management clock advances and Maestro acts unprompted."
+    },
+    {
+      "id": "sub_close",
+      "voice": "founder",
+      "stability": 0.55,
+      "similarity": 0.85,
+      "style": 0.5,
+      "text": "Built today on Anthropic Opus four point seven and ElevenLabs Conversational AI. Repo: daylite dash a i slash hospitality 2030 maestro."
+    }
+  ]
+}
