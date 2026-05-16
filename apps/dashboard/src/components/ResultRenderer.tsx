@@ -110,6 +110,50 @@ function PmsGuestLookup({ result }: { result: string }) {
   );
 }
 
+interface RoomState {
+  number?: string;
+  type?: string;
+  status?: string;
+  notes?: string;
+  assignedGuestId?: string | null;
+}
+
+function statusTone(status?: string): "sage" | "clay" | "gold" | "default" {
+  switch (status) {
+    case "vacant_clean":
+      return "sage";
+    case "vacant_dirty":
+    case "deep_clean_required":
+      return "clay";
+    case "occupied":
+      return "gold";
+    default:
+      return "default";
+  }
+}
+
+function PmsGetRoom({ result }: { result: string }) {
+  const room = tryParseResultJson(result) as RoomState | null;
+  if (!room || !room.number) return null;
+  const statusLabel = (room.status ?? "—").replace(/_/g, " ");
+  return (
+    <div className="space-y-1.5 rounded-lg border border-[color:var(--color-stone-light)] bg-white/60 px-3 py-2">
+      <div className="flex items-center justify-between gap-3">
+        <p className="font-display text-base leading-tight text-[color:var(--color-espresso)]">
+          Suite {room.number}
+          {room.type ? <span className="ml-1.5 text-[color:var(--color-stone)] text-[12px] italic">· {room.type}</span> : null}
+        </p>
+        <Pill tone={statusTone(room.status)}>{statusLabel}</Pill>
+      </div>
+      {room.notes ? (
+        <p className="font-display text-xs italic leading-snug text-[color:var(--color-charcoal)]">
+          “{room.notes}”
+        </p>
+      ) : null}
+    </div>
+  );
+}
+
 function PmsListAvailableRooms({ result }: { result: string }) {
   const rooms = tryParseResultJson(result);
   if (!Array.isArray(rooms)) return null;
@@ -212,6 +256,7 @@ const RENDERERS: Record<
   (input: { args: Record<string, unknown>; result: string }) => React.ReactNode
 > = {
   pms_get_guest_by_name: ({ result }) => <PmsGuestLookup result={result} />,
+  pms_get_room: ({ result }) => <PmsGetRoom result={result} />,
   pms_list_available_rooms: ({ result }) => <PmsListAvailableRooms result={result} />,
   pms_reassign_guest_room: ({ args, result }) => (
     <PmsReassignRoom args={args as Record<string, string>} _result={result} />

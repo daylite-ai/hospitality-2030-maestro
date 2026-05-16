@@ -14,8 +14,8 @@ export function SystemColumn({ system, calls }: { system: System; calls: ToolCal
   const h = HEADERS[system];
 
   return (
-    <section className="flex min-w-[240px] flex-1 flex-col gap-3">
-      <header className="flex items-baseline justify-between border-b border-[color:var(--color-stone-light)] pb-2">
+    <section className="flex min-h-0 min-w-[240px] flex-col gap-3">
+      <header className="flex shrink-0 items-baseline justify-between border-b border-[color:var(--color-stone-light)] pb-2">
         <div>
           <SystemBadge system={system} label={h.label} />
           <p className="mt-1 font-display text-base italic leading-none text-[color:var(--color-charcoal)]">
@@ -27,7 +27,7 @@ export function SystemColumn({ system, calls }: { system: System; calls: ToolCal
         </span>
       </header>
 
-      <div className="flex flex-col gap-2.5">
+      <div className="flex min-h-0 flex-1 flex-col gap-2.5 overflow-y-auto pr-1 [scrollbar-width:thin]">
         <AnimatePresence mode="popLayout">
           {calls.map((c) => (
             <ToolCallCard key={c.callId} data={c} />

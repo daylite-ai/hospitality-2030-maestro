@@ -9,6 +9,7 @@ import { ToolResult } from "./ResultRenderer";
 // raw JSON args/result preview entirely; the micro-state card is the message.
 const TOOLS_WITH_CUSTOM_RENDER = new Set([
   "pms_get_guest_by_name",
+  "pms_get_room",
   "pms_list_available_rooms",
   "pms_reassign_guest_room",
   "hk_schedule_cleaning",
