@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { Card } from "./ui/card";
 import { formatClock } from "@/lib/utils";
+import { QrPanel } from "./QrPanel";
 
 interface Props {
   transcripts: { text: string; ts: string }[];
@@ -27,13 +28,16 @@ export function TranscriptCard({ transcripts, thinking, spokenResponse, toolCoun
       </header>
 
       {!hasContent && (
-        <p className="font-display text-2xl italic leading-snug text-[color:var(--color-stone)]">
-          Standing by. Tap the microphone or hit{" "}
-          <kbd className="rounded border border-[color:var(--color-stone-light)] bg-white px-1.5 py-0.5 font-mono text-[11px] not-italic text-[color:var(--color-espresso-soft)]">
-            ⌘ K
-          </kbd>{" "}
-          to dictate.
-        </p>
+        <div className="flex items-start justify-between gap-6 pt-1">
+          <p className="font-display text-2xl italic leading-snug text-[color:var(--color-stone)]">
+            Standing by. Tap the microphone or hit{" "}
+            <kbd className="rounded border border-[color:var(--color-stone-light)] bg-white px-1.5 py-0.5 font-mono text-[11px] not-italic text-[color:var(--color-espresso-soft)]">
+              ⌘ K
+            </kbd>{" "}
+            to dictate.
+          </p>
+          <QrPanel compact />
+        </div>
       )}
 
       {transcripts.map((t, i) => (
@@ -67,14 +71,17 @@ export function TranscriptCard({ transcripts, thinking, spokenResponse, toolCoun
           initial={{ opacity: 0, y: 4 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="rounded-xl border border-[color:var(--color-sage)]/30 bg-[color:var(--color-sage)]/8 px-4 py-3"
+          className="flex items-center justify-between gap-5 rounded-xl border border-[color:var(--color-sage)]/30 bg-[color:var(--color-sage)]/8 px-4 py-3"
         >
+          <div className="flex-1">
           <span className="block font-mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--color-sage-deep)]">
             Maestro → GM
           </span>
           <p className="mt-1 font-display text-xl italic leading-snug text-[color:var(--color-espresso)]">
             “{spokenResponse}”
           </p>
+          </div>
+          <QrPanel compact />
         </motion.div>
       )}
     </Card>
