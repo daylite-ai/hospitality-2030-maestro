@@ -231,7 +231,7 @@ export default function App() {
   }
 
   return (
-    <div className="bg-paper relative flex min-h-screen flex-col">
+    <div className="bg-paper relative flex h-screen flex-col overflow-hidden">
       <Toaster position="top-center" theme="light" toastOptions={{ duration: 3500 }} />
 
       <XRayOverlay open={xrayOpen} events={events} onClose={() => setXrayOpen(false)} />
@@ -281,7 +281,7 @@ export default function App() {
         </div>
       </header>
 
-      <main className="flex flex-1 flex-col gap-6 px-10 pb-32 pt-6">
+      <main className="flex min-h-0 flex-1 flex-col gap-5 px-10 pb-28 pt-5">
         <TranscriptCard
           transcripts={view.transcripts}
           thinking={view.thinking}
@@ -290,7 +290,7 @@ export default function App() {
           durationMs={view.turnDuration}
         />
 
-        <div className="flex flex-row items-stretch gap-5">
+        <div className="grid min-h-0 flex-1 grid-cols-3 gap-5">
           {SYSTEMS.map((s) => (
             <SystemColumn key={s} system={s} calls={view.byColumn[s]} />
           ))}

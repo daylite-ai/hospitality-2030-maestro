@@ -6,7 +6,7 @@
 [![Hospitality 2030](https://img.shields.io/badge/Hospitality_2030-Cerebral_Valley_%C3%97_Greycroft_%C3%97_Anthropic_%C3%97_ElevenLabs-839073?style=flat-square)](https://github.com/daylite-ai/hospitality-2030-maestro)
 [![GitHub stars](https://img.shields.io/github/stars/daylite-ai/hospitality-2030-maestro?style=flat-square)](https://github.com/daylite-ai/hospitality-2030-maestro/stargazers)
 
-<img src="./screenshots/02-streaming.png" width="900" alt="Maestro fan-out: 8 tool calls across PMS, Housekeeping, F&B in 45 seconds" />
+<img src="./screenshots/00-hero.png" width="900" alt="Maestro fan-out: 8 tool calls across PMS, Housekeeping, F&B in 45 seconds" />
 
 ## What it does
 
