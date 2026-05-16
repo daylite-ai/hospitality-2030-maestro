@@ -57,12 +57,22 @@ function truncate(s: string): string {
 }
 
 /** Convert MCP tool descriptors into Anthropic tool definitions. */
+/** Tool names starting with `admin_` are internal demo-control hooks
+ * (e.g. chaos injection). They're routable by the orchestrator's pool
+ * but must be hidden from Claude so the model doesn't accidentally call
+ * them. */
+function isAdminTool(name: string): boolean {
+  return name.startsWith("admin_");
+}
+
 export function toAnthropicTools(tools: ToolDescriptor[]): Anthropic.Tool[] {
-  return tools.map((t) => ({
-    name: t.name,
-    description: t.description,
-    input_schema: t.inputSchema as Anthropic.Tool.InputSchema,
-  }));
+  return tools
+    .filter((t) => !isAdminTool(t.name))
+    .map((t) => ({
+      name: t.name,
+      description: t.description,
+      input_schema: t.inputSchema as Anthropic.Tool.InputSchema,
+    }));
 }
 
 export class ClaudeLoop {
