@@ -1,6 +1,4 @@
 node_modules
-.env
-.env.local
 .next
 .turbo
 dist
@@ -12,3 +10,18 @@ pnpm-lock.yaml.bak
 *.tsbuildinfo
 .vite
 .tsx-cache
+
+# secrets — paranoid defaults
+.env
+.env.*
+!.env.example
+secrets/
+secrets.*
+*.secret
+*.secret.*
+keys.txt
+*-key.txt
+**/credentials.json
+**/api-keys*
+*.pem
+*.key
