@@ -84,7 +84,13 @@ function deriveTurnView(events: TraceEvent[]) {
           status: ev.result.ok ? "done" : "error",
           durationMs: ev.durationMs,
           resultPreview: ev.result.text.slice(0, 3_000),
+          acked: calls.get(ev.callId)?.acked ?? false,
         });
+        break;
+      }
+      case "staff_ack": {
+        const c = calls.get(ev.callId);
+        if (c) calls.set(ev.callId, { ...c, acked: true });
         break;
       }
       case "turn_completed":
