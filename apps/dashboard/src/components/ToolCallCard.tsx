@@ -3,6 +3,20 @@ import type { System } from "@maestro/protocol";
 import { Card } from "@/components/ui/card";
 import { Pill, SystemBadge } from "@/components/ui/badge";
 import { previewJson } from "@/lib/utils";
+import { ToolResult } from "./ResultRenderer";
+
+// Tools that have a hand-built ResultRenderer below. For these we skip the
+// raw JSON args/result preview entirely; the micro-state card is the message.
+const TOOLS_WITH_CUSTOM_RENDER = new Set([
+  "pms_get_guest_by_name",
+  "pms_list_available_rooms",
+  "pms_reassign_guest_room",
+  "hk_schedule_cleaning",
+  "hk_create_amenity_ticket",
+  "fnb_make_reservation",
+  "fnb_check_availability",
+  "spa_book_slot",
+]);
 
 const SYSTEM_LABELS: Record<System, string> = {
   pms: "PMS",
@@ -71,21 +85,25 @@ export function ToolCallCard({ data }: { data: ToolCallCardData }) {
           {title}
         </h3>
 
-        {argPreview && data.status !== "active" && (
-          <pre className="rounded-md bg-[color:var(--color-alabaster-deep)] px-2.5 py-1.5 font-mono text-[10.5px] leading-snug text-[color:var(--color-charcoal)] whitespace-pre-wrap break-words">
-            {argPreview}
-          </pre>
-        )}
-
         {data.status === "active" && (
           <div className="rounded-md bg-[color:var(--color-alabaster-deep)] px-2.5 py-1.5 font-mono text-[10.5px] italic text-[color:var(--color-stone)]">
             Generating payload…
           </div>
         )}
 
-        {data.status !== "active" && data.resultPreview && (
+        {data.status !== "active" && TOOLS_WITH_CUSTOM_RENDER.has(data.tool) && (
+          <ToolResult data={data} />
+        )}
+
+        {data.status !== "active" && !TOOLS_WITH_CUSTOM_RENDER.has(data.tool) && argPreview && (
+          <pre className="rounded-md bg-[color:var(--color-alabaster-deep)] px-2.5 py-1.5 font-mono text-[10.5px] leading-snug text-[color:var(--color-charcoal)] whitespace-pre-wrap break-words">
+            {argPreview}
+          </pre>
+        )}
+
+        {data.status !== "active" && !TOOLS_WITH_CUSTOM_RENDER.has(data.tool) && data.resultPreview && (
           <p className="line-clamp-2 text-xs leading-snug text-[color:var(--color-espresso-soft)]">
-            {data.resultPreview}
+            {data.resultPreview.slice(0, 160)}
           </p>
         )}
       </Card>

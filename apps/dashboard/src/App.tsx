@@ -70,7 +70,7 @@ function deriveTurnView(events: TraceEvent[]) {
           args: calls.get(ev.callId)?.args ?? null,
           status: ev.result.ok ? "done" : "error",
           durationMs: ev.durationMs,
-          resultPreview: ev.result.text.split("\n").slice(0, 3).join(" ").slice(0, 160),
+          resultPreview: ev.result.text.slice(0, 3_000),
         });
         break;
       }
