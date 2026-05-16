@@ -16,7 +16,8 @@ export type TraceEvent =
   | TurnCompletedEvent
   | TurnErrorEvent
   | StateSnapshotEvent
-  | StateChangedEvent;
+  | StateChangedEvent
+  | StaffAckEvent;
 
 export interface TurnStartedEvent {
   type: "turn_started";
@@ -88,6 +89,17 @@ export interface StateChangedEvent {
   system: System;
   action: string;
   detail: Record<string, unknown>;
+}
+
+/** Staff acknowledged a task on the /operator mobile surface. Broadcast to
+ * every connected dashboard so the GM's view of the corresponding tool-call
+ * card animates from "done" to "ready-acknowledged". */
+export interface StaffAckEvent {
+  type: "staff_ack";
+  callId: string;
+  system: System;
+  ackedBy: "housekeeping" | "fnb";
+  ts: string;
 }
 
 /** Client → server: a fresh staff voice/text message to process. */

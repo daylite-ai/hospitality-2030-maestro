@@ -138,6 +138,34 @@ export function startServer(deps: ServerDeps): { close: () => void; broadcast: (
     return c.json({ ok: true, turnId, scenario: "recovery" });
   });
 
+  /**
+   * Staff /operator mobile back-channel.
+   *
+   * When a housekeeper or F&B server swipes a task complete on their phone,
+   * the mobile surface POSTs here. We rebroadcast as a staff_ack event so
+   * every connected dashboard (GM laptop) sees the corresponding tool-call
+   * card animate from "done" to "ready-acknowledged". The motion design IS
+   * the proof that orchestration closes the loop in real time.
+   */
+  app.post("/api/operator/ack", async (c) => {
+    const body = (await c.req.json().catch(() => ({}))) as {
+      callId?: string;
+      system?: "pms" | "housekeeping" | "fnb" | "spa";
+      ackedBy?: "housekeeping" | "fnb";
+    };
+    if (!body.callId || !body.system || !body.ackedBy) {
+      return c.json({ error: "callId, system, and ackedBy are required" }, 400);
+    }
+    broadcast({
+      type: "staff_ack",
+      callId: body.callId,
+      system: body.system,
+      ackedBy: body.ackedBy,
+      ts: new Date().toISOString(),
+    });
+    return c.json({ ok: true });
+  });
+
   app.post("/webhook/elevenlabs", async (c) => handleElevenLabsCustomLlm(c, deps.loop, broadcast));
 
   const httpServer = serve({ fetch: app.fetch, port: deps.port }, (info) => {
